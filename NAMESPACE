@@ -1,1 +1,4 @@
 export(iClusterVB)
+import(RcppArmadillo)
+import(Rcpp)
+useDynLib(iClusterVB)
