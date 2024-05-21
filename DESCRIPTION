@@ -1,0 +1,42 @@
+Package: iClusterVB
+Type: Package
+Title: Fast Integrative Clustering and Variable Selection for High Dimensional Data
+Version: 0.1.0
+Maintainer: Abdalkarim Alnajjar <18aa135@queensu.ca>
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    cluster,
+    coda,
+    ggplot2,
+    graphics,
+    lme4,
+    MASS,
+    mclust,
+    MCMCpack,
+    mvtnorm,
+    Rcpp (>= 1.0.9),
+    Rmpfr,
+    stats,
+    truncdist,
+    abind,
+    inline,
+    compiler,
+    VarSelLCM,
+    clustMixType,
+    poLCA,
+    
+Suggests: 
+    cowplot,
+    joineRML,
+    knitr,
+    rmarkdown,
+    survival,
+    survminer,
+    testthat (>= 3.0.0)
+LinkingTo: 
+    Rcpp,
+    RcppArmadillo
+VignetteBuilder: 
+    knitr
