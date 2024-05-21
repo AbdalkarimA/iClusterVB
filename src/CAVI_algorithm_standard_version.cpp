@@ -7,7 +7,6 @@
 
 #include <armadillo>
 #include <chrono>
-#include <Rcpp.h>
 #include <numeric>
 #include <vector>
 #include <iostream>
@@ -21,7 +20,7 @@ using namespace arma;
 // Function to find the index of an element in a character vector
 // [[Rcpp::export]]
 
-inline arma::vec findIndices_char(Rcpp::CharacterVector vec, const std::string& target) {
+arma::vec findIndices_char(Rcpp::CharacterVector vec, const std::string& target) {
   
   int n = vec.size();
   arma::vec indices;
@@ -37,7 +36,7 @@ inline arma::vec findIndices_char(Rcpp::CharacterVector vec, const std::string& 
 
 // Function to find the index of an element in a numeric vector
 // [[Rcpp::export]]
-inline int findIndex_numeric(const arma::vec& vec, double target) {
+int findIndex_numeric(const arma::vec& vec, double target) {
   
   int n = vec.n_elem;  // Use .n_elem to get the number of elements
   
@@ -52,7 +51,7 @@ inline int findIndex_numeric(const arma::vec& vec, double target) {
 
 // Softmax function implemented using Rcpp
 // [[Rcpp::export]]
-inline arma::vec softmax_log(arma::vec log_values) {
+arma::vec softmax_log(arma::vec log_values) {
   // Scale log values to prevent numerical instability
   double max_log_value = max(log_values);
   arma::vec adjusted_values = log_values - max_log_value;
@@ -70,7 +69,7 @@ inline arma::vec softmax_log(arma::vec log_values) {
 
 #include <unordered_map>
 // [[Rcpp::export]]
-inline arma:: vec countValues(const arma:: vec& vector, int U) {
+arma:: vec countValues(const arma:: vec& vector, int U) {
   
   std::unordered_map<int, int> counts;
   
@@ -89,7 +88,7 @@ inline arma:: vec countValues(const arma:: vec& vector, int U) {
 }
 
 // [[Rcpp::export]]
-inline double ddirichlet(const arma::vec& x, const arma::vec& alpha) {
+double ddirichlet(const arma::vec& x, const arma::vec& alpha) {
   double sum_alpha = arma::accu(alpha);
   double sum_x = arma::accu(x);
   
@@ -100,7 +99,7 @@ inline double ddirichlet(const arma::vec& x, const arma::vec& alpha) {
 }
 
 // [[Rcpp::export]]
-inline double log_ddirichlet(const arma::vec& x, const arma::vec& alpha) {
+double log_ddirichlet(const arma::vec& x, const arma::vec& alpha) {
   double sum_alpha = arma::accu(alpha);
   double sum_x = arma::accu(x);
   
