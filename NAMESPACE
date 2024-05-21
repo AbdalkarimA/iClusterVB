@@ -1,4 +1,6 @@
 export(iClusterVB)
+export(CAVI_algorithm_global)
+export(CAVI_algorithm_standard)
 import(RcppArmadillo)
 import(Rcpp)
 import(inline)
