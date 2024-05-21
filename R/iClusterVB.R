@@ -477,6 +477,10 @@ iClusterVB <- function(
   #------------------------------------------------------------------------------------#
   start_time <- Sys.time()  # Record start time
   if (VS_method == 0){
+
+    sourceCpp(paste0(mydir,"CAVI_algorithm_standard_version.cpp"))
+    CAVI_algorithm_standard <- cmpfun(CAVI_algorithm_standard)
+
     res_CAVI <- CAVI_algorithm_standard(
       mydata,
       data_summary,
@@ -495,6 +499,9 @@ iClusterVB <- function(
 
 
   if (VS_method == 1){
+    sourceCpp(paste0(mydir,"CAVI_algorithm_global_version.cpp"))
+    CAVI_algorithm_global <- cmpfun(CAVI_algorithm_global)
+
     res_CAVI <- CAVI_algorithm_global(
       mydata,
       data_summary,
