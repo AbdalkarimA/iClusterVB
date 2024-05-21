@@ -99,7 +99,7 @@ double ddirichlet_glo(const arma::vec& x, const arma::vec& alpha) {
 }
 
 // [[Rcpp::export]]
-double log_ddirichlet_glo_glo(const arma::vec& x, const arma::vec& alpha) {
+double log_ddirichlet_glo(const arma::vec& x, const arma::vec& alpha) {
   double sum_alpha = arma::accu(alpha);
   double sum_x = arma::accu(x);
 
@@ -456,8 +456,8 @@ Rcpp::List CAVI_algorithm_global(Rcpp:: List mydata,               // List of R 
                   arma::mat tmpp9_rep = repmat(tmpp9.t(), N, 1);
 
               //E_log_pX_sum += arma::accu(phi_rep % omega_r % (tmpp7 % (tmpp8_rep - tmpp9_rep)))  ;
-              E_qtheta += log_ddirichlet_glo_glo(theta_cube.slice(m).row(k).t(), kappa_cube.slice(m).row(k).t());
-              E_log_prior_theta +=  log_ddirichlet_glo_glo(theta_cube.slice(m).row(k).t(), kappa_0_cube.slice(m).row(k).t());
+              E_qtheta += log_ddirichlet_glo(theta_cube.slice(m).row(k).t(), kappa_cube.slice(m).row(k).t());
+              E_log_prior_theta +=  log_ddirichlet_glo(theta_cube.slice(m).row(k).t(), kappa_0_cube.slice(m).row(k).t());
               }
               E_log_pX_sum += arma::accu(phi_rep % omega_r  % sump);
 
@@ -556,9 +556,9 @@ Rcpp::List CAVI_algorithm_global(Rcpp:: List mydata,               // List of R 
 
     arma::mat tmp = log_phi - log(phi  + epsilon);
     double E_log_phi  = arma::accu(phi % tmp);
-    double E_log_prior_ppi = log_ddirichlet_glo_glo(ppi, alpha_0)  ;
+    double E_log_prior_ppi = log_ddirichlet_glo(ppi, alpha_0)  ;
 
-    double E_qppi =  log_ddirichlet_glo_glo(ppi, alpha)  ;
+    double E_qppi =  log_ddirichlet_glo(ppi, alpha)  ;
     double E_qzz = arma::accu(phi % log(phi  + epsilon));
 
     double E_log_p =    E_log_pX_sum +

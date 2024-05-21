@@ -70,15 +70,15 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// log_ddirichlet_glo_glo
-double log_ddirichlet_glo_glo(const arma::vec& x, const arma::vec& alpha);
-RcppExport SEXP _iClusterVB_log_ddirichlet_glo_glo(SEXP xSEXP, SEXP alphaSEXP) {
+// log_ddirichlet_glo
+double log_ddirichlet_glo(const arma::vec& x, const arma::vec& alpha);
+RcppExport SEXP _iClusterVB_log_ddirichlet_glo(SEXP xSEXP, SEXP alphaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::vec& >::type x(xSEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type alpha(alphaSEXP);
-    rcpp_result_gen = Rcpp::wrap(log_ddirichlet_glo_glo(x, alpha));
+    rcpp_result_gen = Rcpp::wrap(log_ddirichlet_glo(x, alpha));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -202,7 +202,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_iClusterVB_softmax_log_glo", (DL_FUNC) &_iClusterVB_softmax_log_glo, 1},
     {"_iClusterVB_countValues_glo", (DL_FUNC) &_iClusterVB_countValues_glo, 2},
     {"_iClusterVB_ddirichlet_glo", (DL_FUNC) &_iClusterVB_ddirichlet_glo, 2},
-    {"_iClusterVB_log_ddirichlet_glo_glo", (DL_FUNC) &_iClusterVB_log_ddirichlet_glo_glo, 2},
+    {"_iClusterVB_log_ddirichlet_glo", (DL_FUNC) &_iClusterVB_log_ddirichlet_glo, 2},
     {"_iClusterVB_CAVI_algorithm_global", (DL_FUNC) &_iClusterVB_CAVI_algorithm_global, 11},
     {"_iClusterVB_findIndices_char", (DL_FUNC) &_iClusterVB_findIndices_char, 2},
     {"_iClusterVB_findIndex_numeric", (DL_FUNC) &_iClusterVB_findIndex_numeric, 2},
