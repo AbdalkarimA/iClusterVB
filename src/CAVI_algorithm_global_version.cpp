@@ -52,7 +52,7 @@ int findIndex_numeric(const arma::vec& vec, double target) {
 
 // Softmax function implemented using Rcpp
 // [[Rcpp::export]]
-arma::vec softmax_log(arma::vec log_values) {
+inline arma::vec softmax_log(arma::vec log_values) {
   // Scale log values to prevent numerical instability
   double max_log_value = max(log_values);
   arma::vec adjusted_values = log_values - max_log_value;
