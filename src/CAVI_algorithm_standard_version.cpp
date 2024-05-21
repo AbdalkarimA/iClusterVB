@@ -21,7 +21,7 @@ using namespace arma;
 // Function to find the index of an element in a character vector
 // [[Rcpp::export]]
 
-arma::vec inline findIndices_char(Rcpp::CharacterVector vec, const std::string& target) {
+inline arma::vec findIndices_char(Rcpp::CharacterVector vec, const std::string& target) {
   
   int n = vec.size();
   arma::vec indices;
@@ -100,7 +100,7 @@ inline double ddirichlet(const arma::vec& x, const arma::vec& alpha) {
 }
 
 // [[Rcpp::export]]
-double inline log_ddirichlet(const arma::vec& x, const arma::vec& alpha) {
+inline double log_ddirichlet(const arma::vec& x, const arma::vec& alpha) {
   double sum_alpha = arma::accu(alpha);
   double sum_x = arma::accu(x);
   
