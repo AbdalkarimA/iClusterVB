@@ -2,6 +2,9 @@ mydir <- "./src/"
 sourceCpp(paste0(mydir,"CAVI_algorithm_standard_version.cpp"))
 sourceCpp(paste0(mydir,"CAVI_algorithm_global_version.cpp"))
 
+CAVI_algorithm_global <- cmpfun(CAVI_algorithm_global)
+CAVI_algorithm_standard <- cmpfun(CAVI_algorithm_standard)
+
 #---------------------------------------------------------------------------#
 iClusterVB <- function(
     mydata, 			 # input data - list of length R data set (each data set is of N times p_r dimensional)
@@ -21,8 +24,6 @@ iClusterVB <- function(
     per = 10,                        # print information every per iteration
     convergence_threshold = 1e-4	   # Define a convergence threshold for the change in ELBO
 ){
-  CAVI_algorithm_global <- cmpfun(CAVI_algorithm_global)
-  CAVI_algorithm_standard <- cmpfun(CAVI_algorithm_standard)
 
   test <- 0
   if (test==1){
