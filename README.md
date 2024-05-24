@@ -1,6 +1,19 @@
 iClusterVB: A variational Bayes approach - User Manual
 ================
 
+**iClusterVB: A Next-Generation R Package for Bayesian Clustering**
+
+Traditional clustering methods grapple with the challenges posed by high
+dimensionality, multimodality, and computational intricacies. In
+response to these hurdles, we present iClusterVB—an integrative
+clustering approach grounded in variational Bayesian inference.
+iClusterVB allows researchers to navigate high-dimensional datasets
+comprising mixed-type data, including continuous, categorical, and count
+variables, as well as multi-view data. With iClusterVB, researchers can
+harness the power of Bayesian inference to unlock the latent structure
+within their datasets, paving the way for transformative discoveries in
+biomedicine and beyond.
+
 ## Installing and loading the Package
 
 ``` r
@@ -18,6 +31,15 @@ library(iClusterVB)
     ## loading 'iClusterVB'
 
 ## Simulated Data
+
+The simulated dataset is a list of four seperate datasets, as we might
+expect from multi-view. Two of those are continuous (continuous1_data
+and continuous2_data, such as gene expression data), one is count
+(count_data, such as sequencing data), and one is binary (binary_data,
+such as the presence or absence of mutations). Each of the four datasets
+contains 100 samples and 50 variables. However, only 10 were truly
+informative and the others were noise. This can be seen in the heatmaps
+below.
 
 ``` r
 load("sim_data.Rdata")
@@ -134,6 +156,29 @@ grid.arrange(gp_dat1,gp_dat2,gp_dat3,gp_dat4, nrow = 1)
 
 ## Using iClusterVB
 
+<!-- TABLE_GENERATE_START -->
+
+
+| Argument                | Default Value | Description                                                                                                                                                                                                                                                                                   |
+|-------------------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| mydata                  | NA            | input data - list of length R data set                                                                                                                                                                                                                                                        |
+| dist                    | NA            | type of data, or distribution: dist = 'continuous', 'multinomial', 'poisson' (vector of length R)                                                                                                                                                                                             |
+| K                       | 10            | maximum number of clusters                                                                                                                                                                                                                                                                    |
+| initial_method          | VarSelLCM     | initialization method: VarSelLCM, random, k-prototype, k-means, mclust, or lca                                                                                                                                                                                                                |
+| VS_method               | 0             | variable selection method: 0 = clustering without variable selection, 1 = clustering with variable selection                                                                                                                                                                                  |
+| initial_cluster         | NULL          | initial cluster membership, if it is not NULL, it will overwrite the previous initial values setting for this parameter                                                                                                                                                                       |
+| initial_vs_prob         | NULL          | initial variable selection probability, a scalar                                                                                                                                                                                                                                              |
+| intitial_fit            | NULL          | initial values based on previously fitted iClusterVB model (an iClusterVB object)                                                                                                                                                                                                             |
+| initial_omega           | NULL          | customized initial values for variable inclusion probabilities, if it is not NULL, it will overwrite the previous initial values setting for this parameter, if VS_method = 1, initial_omega is a list with length R, each element of the list is an array with dim=c(N,p[[r]])), r = 1,...,R |
+| initial_hyper_paramters | NULL          | input hyper-parameters of the prior distributions for the model                                                                                                                                                                                                                               |
+| max_iter                | 200           | maximum iteration of the VB algorithm                                                                                                                                                                                                                                                         |
+| early_stop              | 1             | whether to stop the algorithm when it converges or continue until it reaches max_iter: 1 - algorithm stops when converges, 0 - algorithm stops when it reaches the maximum iteration (regardless of whether it converges or not)                                                              |
+| per                     | 10            | print information every "per" iteration                                                                                                                                                                                                                                                       |
+| convergence_threshold   | 1.00E-04      | define a convergence threshold for the change in ELBO                                                                                                                                                                                                                                         |
+
+<!-- TABLE_GENERATE_END -->
+
+
 ### Pre-processing data
 
 ``` r
@@ -162,7 +207,7 @@ fit.iClusterVB <- iClusterVB(
          VS_method = 1, 
          K = K_max,     
          max_iter = 200,
-         per = 100) #to understand the arguments, please look at the iClusterVB.R file
+         per = 100)
 ```
 
     ## ------------------------------------------------------------ 

@@ -3,6 +3,14 @@ title: "iClusterVB: A variational Bayes approach - User Manual"
 output: github_document
 ---
 
+
+
+__iClusterVB: A Next-Generation R Package for Bayesian Clustering__
+
+
+Traditional clustering methods grapple with the challenges posed by high dimensionality, multimodality, and computational intricacies. In response to these hurdles, we present iClusterVB—an integrative clustering approach grounded in variational Bayesian inference. iClusterVB allows researchers to navigate high-dimensional datasets comprising mixed-type data, including continuous, categorical, and count variables, as well as multi-view data. With iClusterVB, researchers can harness the power of Bayesian inference to unlock the latent structure within their datasets, paving the way for transformative discoveries in biomedicine and beyond.
+
+
 ## Installing and loading the Package
 
 
@@ -15,6 +23,9 @@ devtools::install_github("AbdalkarimA/iClusterVB")
 library(iClusterVB)
 ```
 ## Simulated Data
+
+
+The simulated dataset is a list of four seperate datasets, as we might expect from multi-view. Two of those are continuous (continuous1_data and continuous2_data, such as gene expression data), one is count (count_data, such as sequencing data), and one is binary (binary_data, such as the presence or absence of mutations). Each of the four datasets contains 100 samples and 50 variables. However, only 10 were truly informative and the others were noise. This can be seen in the heatmaps below.
 
 
 ```{r}
@@ -117,6 +128,7 @@ grid.arrange(gp_dat1,gp_dat2,gp_dat3,gp_dat4, nrow = 1)
 
 ## Using iClusterVB
 
+
 ### Pre-processing data
 
 ```{r}
@@ -146,7 +158,7 @@ fit.iClusterVB <- iClusterVB(
        	 VS_method = 1, 
        	 K = K_max, 	
 	 	 max_iter = 200,
-	 	 per = 100) #to understand the arguments, please look at the iClusterVB.R file
+	 	 per = 100)
 ```
 
 ### Making a plot for ELBO (evidence lower bound) by iteration
