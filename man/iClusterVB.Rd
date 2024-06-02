@@ -15,9 +15,9 @@ iClusterVB—an integrative clustering approach grounded in variational Bayesian
 
 \arguments{
 \item{mydata}{input data - list of length R data set}
-\item{dist}{type of data, or distribution: dist = 'continuous', 'multinomial', 'poisson' (vector of length R)}
+\item{dist}{type of data, or distribution: dist = 'gaussian', 'multinomial', 'poisson' (vector of length R)}
 \item{K}{maximum number of clusters; Default is 10}
-\item{initial_method}{initialization method: VarSelLCM, random, k-prototype, k-means, mclust, or lca; Default is VarSelLCM}
+\item{initial_method}{initialization method: VarSelLCM, random, kproto, kmeans, mclust, or lca; Default is VarSelLCM}
 \item{VS_method}{variable selection method: 0 = clustering without variable selection, 1 = clustering with variable selection; Default is 0}
 \item{initial_cluster}{initial cluster membership, if it is not NULL, it will overwrite the previous initial values setting for this parameter; Default is NULL}
 \item{initial_vs_prob}{initial variable selection probability, a scalar; Default is NULL}
