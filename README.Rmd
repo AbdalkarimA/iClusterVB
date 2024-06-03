@@ -25,7 +25,7 @@ library(iClusterVB)
 ## Simulated Data
 
 
-The simulated dataset is a list of four seperate datasets, as we might expect from multi-view. Two of those are continuous (continuous1_data and continuous2_data, such as gene expression data), one is count (count_data, such as sequencing data), and one is binary (binary_data, such as the presence or absence of mutations). Each of the four datasets contains 100 samples and 50 variables. However, only 10 were truly informative and the others were noise. This can be seen in the heatmaps below.
+The simulated dataset is a list of four seperate datasets, as we might expect from multi-view data. Two of those are continuous (continuous1_data and continuous2_data, such as gene expression data), one is count (count_data, such as sequencing data), and one is binary (binary_data, such as the presence or absence of mutations). Each of the four datasets contains 100 samples and 50 variables. However, only 10 were truly informative and the others were noise. This can be seen in the heatmaps below.
 
 
 ```{r}
