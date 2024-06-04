@@ -11,7 +11,7 @@ chmap(fit, nvars = NULL, title = NULL, cols = NULL)
 
 \item{nvars}{A numeric vector or a single value. The number of variables to show; defaults to all.}
 
-\item{title}{A character vector or a single value. Title of the heat map; defaults to "View 1,2,...R - "Distribution".}
+\item{title}{A character vector or a single value. Title of the heat map; defaults to "View 1,..R - Distribution".}
 
 \item{cols}{A vector of colors to use for the clusters; defaults to a random selection of colors.}
 }

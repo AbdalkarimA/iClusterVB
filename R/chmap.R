@@ -2,7 +2,7 @@
 #'
 #' @param fit A fitted iClusterVB object.
 #' @param nvars A numeric vector or a single value. The number of variables to show; defaults to all.
-#' @param title A character vector or a single value. Title of the heat map; defaults to "View 1,2,...R - "Distribution".
+#' @param title A character vector or a single value. Title of the heat map; defaults to "View 1,..R - Distribution".
 #' @param cols A vector of colors to use for the clusters; defaults to a random selection of colors.
 #' @return Returns a heat map.
 #' @examples
@@ -12,11 +12,11 @@
 chmap <- function(fit, nvars = NULL, title = NULL, cols = NULL) {
 
   if(!is.null(nvars) & length(nvars) == 1) {
-    nvars <- rep(nvars, length(fit_iClusterVB$mydata))
+    nvars <- rep(nvars, length(fit$mydata))
   }
 
   if(!is.null(title) & length(title) == 1) {
-    title <- rep(title, length(fit_iClusterVB$mydata))
+    title <- rep(title, length(fit$mydata))
   }
 
   if(is.null(nvars)) {
