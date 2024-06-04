@@ -211,7 +211,7 @@ fit.iClusterVB <- iClusterVB(
 ```
 
     ## ------------------------------------------------------------ 
-    ## Pre-pocessing and initilizing the model 
+    ## Pre-processing and initilizing the model 
     ## ------------------------------------------------------------ 
     ## ------------------------------------------------------------ 
     ## Running the CAVI algorithm 

@@ -24,7 +24,7 @@ chmap <- function(fit, nvars = NULL, title = NULL, cols = NULL) {
   }
 
   if(is.null(cols)) {
-    cols <- colors()[sample(1:600, size = fit$K)]
+    cols <- colors()[sample(1:600, size = length(unique(fit$cluster)))]
   }
 
   ifelse(is.null(title), title <-paste("View", 1:length(fit$mydata), "-",
