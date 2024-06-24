@@ -1,6 +1,8 @@
 export(iClusterVB)
 export(chmap)
 export(piplot)
+S3method(summary, iClusterVB)
+export(summary.iClusterVB)
 import(RcppArmadillo)
 import(Rcpp, except = registerPlugin)
 import(inline)
