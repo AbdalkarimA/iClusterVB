@@ -42,7 +42,7 @@ iClusterVB <- function(
   }
 
   cat(paste(rep('-',60),sep='',collapse=''), '\n');
-  cat("Pre-processing and initilizing the model",  '\n')
+  cat("Pre-processing and initializing the model",  '\n')
   cat(paste(rep('-',60),sep='',collapse=''), '\n');
 
   # evaluating if there is missing data
