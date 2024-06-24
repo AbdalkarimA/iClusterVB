@@ -21,7 +21,7 @@ iClusterVB—an integrative clustering approach grounded in variational Bayesian
 \item{VS_method}{variable selection method: 0 = clustering without variable selection, 1 = clustering with variable selection; Default is 0}
 \item{initial_cluster}{initial cluster membership, if it is not NULL, it will overwrite the previous initial values setting for this parameter; Default is NULL}
 \item{initial_vs_prob}{initial variable selection probability, a scalar; Default is NULL}
-\item{intitial_fit}{initial values based on previously fitted iClusterVB model (an iClusterVB object); Default is NULL}
+\item{initial_fit}{initial values based on previously fitted iClusterVB model (an iClusterVB object); Default is NULL}
 \item{initial_omega}{customized initial values for variable inclusion probabilities, if it is not NULL, it will overwrite the previous initial values setting for this parameter, if VS_method = 1, initial_omega is a list with length R, each element of the list is an array with dim=c(N,p[[r]])), r = 1,...,R; Default is NULL}
 \item{initial_hyper_parameters}{input hyper-parameters of the prior distributions for the model; Default is NULL}
 \item{max_iter}{maximum iteration of the VB algorithm; Default is 200}
