@@ -37,91 +37,95 @@ load("sim_data.Rdata")
 
 ```{r}
 library(pheatmap)
-mat_colors <- list(Clusters = c("green","blue","purple", "red"))
+mat_colors <- list(Clusters = c("green", "blue", "purple", "red"))
 mat_col <- data.frame(Clusters = as.numeric(simdata$cluster))
 
-dat1 <- data.frame(t(simdata$continuous1_data));  
+dat1 <- data.frame(t(simdata$continuous1_data))
 rownames(mat_col) <- colnames(dat1)
-dat1 <- dat1[,order(as.numeric(simdata$cluster))]
+dat1 <- dat1[, order(as.numeric(simdata$cluster))]
 gp_dat1 <- pheatmap(dat1,
-	main = "View 1",
-	cluster_rows = FALSE,
-	cluster_cols = FALSE,
-	color = colorRampPalette(c("navy", "white", "firebrick3"))(50), 
-      treeheight_row=0,
-	treeheight_col=0,
-	scale = "row",
-	show_colnames = FALSE,
-	show_rownames = FALSE,
-  	annotation_names_row = FALSE,
-	annotation_names_col = FALSE,
-	annotation_col   = mat_col,
-	annotation_colors= mat_colors)
+  main = "View 1",
+  cluster_rows = FALSE,
+  cluster_cols = FALSE,
+  color = colorRampPalette(c("navy", "white", "firebrick3"))(50),
+  treeheight_row = 0,
+  treeheight_col = 0,
+  scale = "row",
+  show_colnames = FALSE,
+  show_rownames = FALSE,
+  annotation_names_row = FALSE,
+  annotation_names_col = FALSE,
+  annotation_col = mat_col,
+  annotation_colors = mat_colors
+)
 
-dat2 <- data.frame(t(simdata$continuous2_data));  
+dat2 <- data.frame(t(simdata$continuous2_data))
 rownames(mat_col) <- colnames(dat2)
-dat2 <- dat2[,order(as.numeric(simdata$cluster))]
+dat2 <- dat2[, order(as.numeric(simdata$cluster))]
 gp_dat2 <- pheatmap(dat2,
-	main = "View 2",
-	cluster_rows = FALSE,
-	cluster_cols = FALSE,
-	color = colorRampPalette(c("navy", "white", "firebrick3"))(50), 
-      treeheight_row=0,
-	treeheight_col=0,
-	scale = "row",
-	show_colnames = FALSE,
-	show_rownames = FALSE,
-  	annotation_names_row = FALSE,
-	annotation_names_col = FALSE,
-	annotation_col   = mat_col,
-	annotation_colors= mat_colors)
+  main = "View 2",
+  cluster_rows = FALSE,
+  cluster_cols = FALSE,
+  color = colorRampPalette(c("navy", "white", "firebrick3"))(50),
+  treeheight_row = 0,
+  treeheight_col = 0,
+  scale = "row",
+  show_colnames = FALSE,
+  show_rownames = FALSE,
+  annotation_names_row = FALSE,
+  annotation_names_col = FALSE,
+  annotation_col = mat_col,
+  annotation_colors = mat_colors
+)
 
-dat3 <- data.frame(t(simdata$count_data));  
+dat3 <- data.frame(t(simdata$count_data))
 rownames(mat_col) <- colnames(dat3)
-dat3 <- dat3[,order(as.numeric(simdata$cluster))]
+dat3 <- dat3[, order(as.numeric(simdata$cluster))]
 gp_dat3 <- pheatmap(dat3,
-	main = "View 3",
-	cluster_rows = FALSE,
-	cluster_cols = FALSE,
-	color = colorRampPalette(c("navy", "white", "firebrick3"))(50), 
-      treeheight_row=0,
-	treeheight_col=0,
-	scale = "row",
-	show_colnames = FALSE,
-	show_rownames = FALSE,
-  	annotation_names_row = FALSE,
-	annotation_names_col = FALSE,
-	annotation_col   = mat_col,
-	annotation_colors= mat_colors)
+  main = "View 3",
+  cluster_rows = FALSE,
+  cluster_cols = FALSE,
+  color = colorRampPalette(c("navy", "white", "firebrick3"))(50),
+  treeheight_row = 0,
+  treeheight_col = 0,
+  scale = "row",
+  show_colnames = FALSE,
+  show_rownames = FALSE,
+  annotation_names_row = FALSE,
+  annotation_names_col = FALSE,
+  annotation_col = mat_col,
+  annotation_colors = mat_colors
+)
 
-dat4 <- data.frame(t(simdata$binary_data));  
+dat4 <- data.frame(t(simdata$binary_data))
 rownames(mat_col) <- colnames(dat4)
-dat4 <- dat4[,order(as.numeric(simdata$cluster))]
+dat4 <- dat4[, order(as.numeric(simdata$cluster))]
 gp_dat4 <- pheatmap(dat4,
-	main = "View 4",
-	cluster_rows = FALSE,
-	cluster_cols = FALSE,
-	color = colorRampPalette(c("navy", "white", "firebrick3"))(50), 
-      treeheight_row=0,
-	treeheight_col=0,
-	scale = "row",
-	show_colnames = FALSE,
-	show_rownames = FALSE,
-  	annotation_names_row = FALSE,
-	annotation_names_col = FALSE,
-	annotation_col   = mat_col,
-	annotation_colors= mat_colors)
+  main = "View 4",
+  cluster_rows = FALSE,
+  cluster_cols = FALSE,
+  color = colorRampPalette(c("navy", "white", "firebrick3"))(50),
+  treeheight_row = 0,
+  treeheight_col = 0,
+  scale = "row",
+  show_colnames = FALSE,
+  show_rownames = FALSE,
+  annotation_names_row = FALSE,
+  annotation_names_col = FALSE,
+  annotation_col = mat_col,
+  annotation_colors = mat_colors
+)
 library(ggplotify)
-gp_dat1 <- as.ggplot(gp_dat1); 
-gp_dat2 <- as.ggplot(gp_dat2); 
-gp_dat3 <- as.ggplot(gp_dat3); 
-gp_dat4 <- as.ggplot(gp_dat4); 
+gp_dat1 <- as.ggplot(gp_dat1)
+gp_dat2 <- as.ggplot(gp_dat2)
+gp_dat3 <- as.ggplot(gp_dat3)
+gp_dat4 <- as.ggplot(gp_dat4)
 ```
 
 
 ```{r fig.width = 16, fig.height=8}
 library(gridExtra)
-grid.arrange(gp_dat1,gp_dat2,gp_dat3,gp_dat4, nrow = 1)
+grid.arrange(gp_dat1, gp_dat2, gp_dat3, gp_dat4, nrow = 1)
 ```
 
 
@@ -132,33 +136,34 @@ grid.arrange(gp_dat1,gp_dat2,gp_dat3,gp_dat4, nrow = 1)
 ### Pre-processing data
 
 ```{r}
-binary_data_new  <- simdata$binary_data
-binary_data_new[binary_data_new==0] <- 2	# re-code the categorical variable
+binary_data_new <- simdata$binary_data
+binary_data_new[binary_data_new == 0] <- 2 # re-code the categorical variable
 ```
 
 ### Specifying data and the corresponding distributions to analyze
 
 ```{r}
-mydata <- list(simdata$continuous1_data,simdata$continuous2_data,simdata$count_data, binary_data_new )
-dist <- c( "gaussian","gaussian","poisson", "multinomial" )
+mydata <- list(simdata$continuous1_data, simdata$continuous2_data, simdata$count_data, binary_data_new)
+dist <- c("gaussian", "gaussian", "poisson", "multinomial")
 
-#Use "gaussian" for continuous data, "poisson"  for count data, and "multinomial" for binary data
+# Use "gaussian" for continuous data, "poisson"  for count data, and "multinomial" for binary data
 ```
 
 
 ### Fitting the model
 
 ```{r}
-K_max <- 8 	# This is the maximum number of clusters
+K_max <- 8 # This is the maximum number of clusters
 set.seed(41)
 fit.iClusterVB <- iClusterVB(
-       	 mydata = mydata, 				                 
-       	 dist = dist,
-		 initial_method = "VarSelLCM", 	# default initilization method
-       	 VS_method = 1, 
-       	 K = K_max, 	
-	 	 max_iter = 200,
-	 	 per = 100)
+  mydata = mydata,
+  dist = dist,
+  initial_method = "VarSelLCM", # default initilization method
+  VS_method = 1,
+  K = K_max,
+  max_iter = 200,
+  per = 100
+)
 ```
 
 ### Making a plot for ELBO (evidence lower bound) by iteration
@@ -166,20 +171,21 @@ fit.iClusterVB <- iClusterVB(
 ```{r}
 iter <- fit.iClusterVB$iter
 elbo <- fit.iClusterVB$elbo[1:iter]
-plot(1:iter, elbo, 
-	type = "o",
-	lwd = 2, 
-	xlab = "Iteration", 
-	ylab = "ELBO")
+plot(1:iter, elbo,
+  type = "o",
+  lwd = 2,
+  xlab = "Iteration",
+  ylab = "ELBO"
+)
 ```
 
 ### Printing the cluster proportion
 
 ```{r}
 # ppi is a vector with a length of K_max
-# note that the estimated ppi suggested that 
-# only clusters 2, 3, 4 and 7 are non-empty, 
-# each of these clusters yielded an estimated cluster proportion of 0.25. 
+# note that the estimated ppi suggested that
+# only clusters 2, 3, 4 and 7 are non-empty,
+# each of these clusters yielded an estimated cluster proportion of 0.25.
 print(fit.iClusterVB$model_parameter$ppi)
 ```
 ### Printing the cluster membership 
@@ -195,13 +201,14 @@ table(fit.iClusterVB$cluster)
 ```{r}
 set.seed(41)
 fit.iClusterVB.kproto <- iClusterVB(
-       	 mydata = mydata, 				                 
-       	 dist = dist,
-		 initial_method = "kproto",
-       	 VS_method = 1, 
-       	 K = K_max, 	
-	 	 max_iter = 200,
-	 	 per = 100)
+  mydata = mydata,
+  dist = dist,
+  initial_method = "kproto",
+  VS_method = 1,
+  K = K_max,
+  max_iter = 200,
+  per = 100
+)
 ```
 
 
@@ -212,11 +219,12 @@ fit.iClusterVB.kproto <- iClusterVB(
 ```{r}
 iter <- fit.iClusterVB.kproto$iter
 elbo <- fit.iClusterVB.kproto$elbo[1:iter]
-plot(1:iter, elbo, 
-	type = "o",
-	lwd = 2, 
-	xlab = "Iteration", 
-	ylab = "ELBO")
+plot(1:iter, elbo,
+  type = "o",
+  lwd = 2,
+  xlab = "Iteration",
+  ylab = "ELBO"
+)
 ```
 
 #### Printing the cluster membership 
@@ -230,29 +238,36 @@ table(fit.iClusterVB.kproto$cluster)
 
 ```{r}
 library(ggplot2)
-K <- length(table(fit.iClusterVB$cluster))		# number of clusters
-N <- fit.iClusterVB$data_summary$N 			# sample size
-df <- data.frame(cbind(cluster=1:K,prop=round(as.numeric(table(fit.iClusterVB$cluster)/N),2)))
-df$cluster <- factor(df$cluster,label=paste0("Cluster ",1:K))
-gp_prop <- ggplot(df, aes(x = cluster, y = prop, 
-				color=cluster, fill=cluster, 
-				label = scales::percent(prop) )) +
-  geom_bar( stat = "identity", position = "dodge")+
-  theme_bw() +  
-  ggtitle(" ") + 
-  theme(legend.position = "none",legend.title=element_blank(),
-	  plot.title = element_text(size = 15, face = "bold",hjust = 0.5),
-        axis.text=element_text(size=15),
-        axis.title=element_text(size=15),
-        legend.text=element_text(size=15),
-        axis.text.x = element_text(angle = 0 ),
-        strip.text.x = element_text(size = 15, angle = 0),
-        strip.text.y = element_text(size = 15,face="bold"))+
-  		geom_text( position = position_dodge(.9), 
-             vjust = -0.5, 
-             size =5) +  
-		xlab("")+ylab("Percentage (%)")   + 
-  	scale_y_continuous(labels = scales::percent,limit=c(0,1.05)) 
+K <- length(table(fit.iClusterVB$cluster)) # number of clusters
+N <- fit.iClusterVB$data_summary$N # sample size
+df <- data.frame(cbind(cluster = 1:K, prop = round(as.numeric(table(fit.iClusterVB$cluster) / N), 2)))
+df$cluster <- factor(df$cluster, label = paste0("Cluster ", 1:K))
+gp_prop <- ggplot(df, aes(
+  x = cluster, y = prop,
+  color = cluster, fill = cluster,
+  label = scales::percent(prop)
+)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  theme_bw() +
+  ggtitle(" ") +
+  theme(
+    legend.position = "none", legend.title = element_blank(),
+    plot.title = element_text(size = 15, face = "bold", hjust = 0.5),
+    axis.text = element_text(size = 15),
+    axis.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.text.x = element_text(angle = 0),
+    strip.text.x = element_text(size = 15, angle = 0),
+    strip.text.y = element_text(size = 15, face = "bold")
+  ) +
+  geom_text(
+    position = position_dodge(.9),
+    vjust = -0.5,
+    size = 5
+  ) +
+  xlab("") +
+  ylab("Percentage (%)") +
+  scale_y_continuous(labels = scales::percent, limit = c(0, 1.05))
 ```
 
 
@@ -266,10 +281,10 @@ gp_prop
 ### Extract the posterior probability of feature inclusion
 
 ```{r}
-fit.iClusterVB$model_parameters$rho[[1]] 	# view 1
-fit.iClusterVB$model_parameters$rho[[2]] 	# view 2
-fit.iClusterVB$model_parameters$rho[[3]] 	# view 3
-fit.iClusterVB$model_parameters$rho[[4]] 	# view 4
+fit.iClusterVB$model_parameters$rho[[1]] # view 1
+fit.iClusterVB$model_parameters$rho[[2]] # view 2
+fit.iClusterVB$model_parameters$rho[[3]] # view 3
+fit.iClusterVB$model_parameters$rho[[4]] # view 4
 ```
 
 ### Visualizing the clusters and selected features
@@ -282,78 +297,91 @@ dat4 <- data.frame(varid = 1:length(fit.iClusterVB$model_parameters$rho[[4]]), r
 
 ```{r}
 library(ggplot2)
-gp_rho1 <- ggplot(dat1, aes(x=reorder(varid, rho), y=rho, fill=rho )) + 
-  	 geom_bar(stat="identity")+
- 	 ggtitle("View 1")+
-	 ylim (c(0,1))+
-	 geom_hline( yintercept = 0.5, color = "red",  linewidth = 1, linetype = 2) + 
-	 theme_bw() + 
-	 theme(legend.position = "bottom",
-			plot.title = element_text(size = 15, face = "bold"),
-			axis.text=element_text(size=1),
-			axis.title=element_text(size=15),
-			axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=1),
-			strip.text.x = element_text(size = 1, angle = 0),
-			strip.text.y = element_text(size = 15,face="bold")) + 
-	 xlab(" ") + ylab("Probability of Inclusion")   + 
-	scale_fill_gradientn( colors = topo.colors(2), limits=c(0,1)) + 
-	 coord_polar()  
-gp_rho2 <- ggplot(dat2, aes(x=reorder(varid, rho), y=rho, fill=rho )) + 
-  	 geom_bar(stat="identity")+
- 	 ggtitle("View 2")+
-	 ylim (c(0,1))+
-	 geom_hline( yintercept = 0.5, color = "red",  linewidth = 1, linetype = 2) + 
-	 theme_bw() + 
-	 theme(legend.position = "bottom",
-			plot.title = element_text(size = 15, face = "bold"),
-			axis.text=element_text(size=1),
-			axis.title=element_text(size=15),
-			axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=1),
-			strip.text.x = element_text(size = 1, angle = 0),
-			strip.text.y = element_text(size = 15,face="bold")) + 
-	 xlab(" ") + ylab("Probability of Inclusion")   + 
-	scale_fill_gradientn( colors = topo.colors(2), limits=c(0,1)) + 
-	 coord_polar()  
-gp_rho3 <- ggplot(dat3, aes(x=reorder(varid, rho), y=rho, fill=rho )) + 
-  	 geom_bar(stat="identity")+
- 	 ggtitle("View 3")+
-	 ylim (c(0,1))+
-	 geom_hline( yintercept = 0.5, color = "red",  linewidth = 1, linetype = 2) + 
-	 theme_bw() + 
-	 theme(legend.position = "bottom",
-			plot.title = element_text(size = 15, face = "bold"),
-			axis.text=element_text(size=1),
-			axis.title=element_text(size=15),
-			axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=1),
-			strip.text.x = element_text(size = 1, angle = 0),
-			strip.text.y = element_text(size = 15,face="bold")) + 
-	 xlab(" ") + ylab("Probability of Inclusion")  + 
-	scale_fill_gradientn( colors = topo.colors(2), limits=c(0,1)) + 
-	 coord_polar()  
-gp_rho4 <- ggplot(dat4, aes(x=reorder(varid, rho), y=rho, fill=rho )) + 
-  	 geom_bar(stat="identity")+
- 	 ggtitle("View 4")+
-	 ylim (c(0,1))+
-	 geom_hline( yintercept = 0.5, color = "red",  linewidth = 1, linetype = 2) + 
-	 theme_bw() + 
-	 theme(legend.position = "bottom",
-			plot.title = element_text(size = 15, face = "bold"),
-			axis.text=element_text(size=1),
-			axis.title=element_text(size=15),
-			axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=1),
-			strip.text.x = element_text(size = 1, angle = 0),
-			strip.text.y = element_text(size = 15,face="bold")) + 
-	 xlab(" ") + ylab("Probability of Inclusion")  + 
-	scale_fill_gradientn( colors = topo.colors(2), limits=c(0,1)) + 
-	 coord_polar() 
+gp_rho1 <- ggplot(dat1, aes(x = reorder(varid, rho), y = rho, fill = rho)) +
+  geom_bar(stat = "identity") +
+  ggtitle("View 1") +
+  ylim(c(0, 1)) +
+  geom_hline(yintercept = 0.5, color = "red", linewidth = 1, linetype = 2) +
+  theme_bw() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(size = 15, face = "bold"),
+    axis.text = element_text(size = 1),
+    axis.title = element_text(size = 15),
+    axis.text.x = element_text(angle = 0, vjust = 0.5, hjust = 1),
+    strip.text.x = element_text(size = 1, angle = 0),
+    strip.text.y = element_text(size = 15, face = "bold")
+  ) +
+  xlab(" ") +
+  ylab("Probability of Inclusion") +
+  scale_fill_gradientn(colors = topo.colors(2), limits = c(0, 1)) +
+  coord_polar()
+gp_rho2 <- ggplot(dat2, aes(x = reorder(varid, rho), y = rho, fill = rho)) +
+  geom_bar(stat = "identity") +
+  ggtitle("View 2") +
+  ylim(c(0, 1)) +
+  geom_hline(yintercept = 0.5, color = "red", linewidth = 1, linetype = 2) +
+  theme_bw() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(size = 15, face = "bold"),
+    axis.text = element_text(size = 1),
+    axis.title = element_text(size = 15),
+    axis.text.x = element_text(angle = 0, vjust = 0.5, hjust = 1),
+    strip.text.x = element_text(size = 1, angle = 0),
+    strip.text.y = element_text(size = 15, face = "bold")
+  ) +
+  xlab(" ") +
+  ylab("Probability of Inclusion") +
+  scale_fill_gradientn(colors = topo.colors(2), limits = c(0, 1)) +
+  coord_polar()
+gp_rho3 <- ggplot(dat3, aes(x = reorder(varid, rho), y = rho, fill = rho)) +
+  geom_bar(stat = "identity") +
+  ggtitle("View 3") +
+  ylim(c(0, 1)) +
+  geom_hline(yintercept = 0.5, color = "red", linewidth = 1, linetype = 2) +
+  theme_bw() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(size = 15, face = "bold"),
+    axis.text = element_text(size = 1),
+    axis.title = element_text(size = 15),
+    axis.text.x = element_text(angle = 0, vjust = 0.5, hjust = 1),
+    strip.text.x = element_text(size = 1, angle = 0),
+    strip.text.y = element_text(size = 15, face = "bold")
+  ) +
+  xlab(" ") +
+  ylab("Probability of Inclusion") +
+  scale_fill_gradientn(colors = topo.colors(2), limits = c(0, 1)) +
+  coord_polar()
+gp_rho4 <- ggplot(dat4, aes(x = reorder(varid, rho), y = rho, fill = rho)) +
+  geom_bar(stat = "identity") +
+  ggtitle("View 4") +
+  ylim(c(0, 1)) +
+  geom_hline(yintercept = 0.5, color = "red", linewidth = 1, linetype = 2) +
+  theme_bw() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(size = 15, face = "bold"),
+    axis.text = element_text(size = 1),
+    axis.title = element_text(size = 15),
+    axis.text.x = element_text(angle = 0, vjust = 0.5, hjust = 1),
+    strip.text.x = element_text(size = 1, angle = 0),
+    strip.text.y = element_text(size = 15, face = "bold")
+  ) +
+  xlab(" ") +
+  ylab("Probability of Inclusion") +
+  scale_fill_gradientn(colors = topo.colors(2), limits = c(0, 1)) +
+  coord_polar()
 ```
 ```{r fig.width=8, fig.height=16 }
 library(cowplot)
 plot_grid(gp_rho1,
-		gp_rho2,
-		gp_rho3,
-		gp_rho4,
-		labels=c("(A)", "(B)", "(C)", "(D)"), nrow = 2, align = "hv" )
+  gp_rho2,
+  gp_rho3,
+  gp_rho4,
+  labels = c("(A)", "(B)", "(C)", "(D)"), nrow = 2, align = "hv"
+)
 ```
 
 

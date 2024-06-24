@@ -3,42 +3,28 @@ Type: Package
 Title: Fast Integrative Clustering and Variable Selection for High Dimensional Data
 Version: 0.1.0
 Maintainer: Abdalkarim Alnajjar <18aa135@queensu.ca>
+Description: More about what it does (maybe more than one line).
 License: MIT
 Encoding: UTF-8
 LazyData: true
 Imports: 
     cluster,
-    coda,
     ggplot2,
-    graphics,
-    lme4,
-    MASS,
     mclust,
     MCMCpack,
     mvtnorm,
-    Rcpp (>= 1.0.9),
-    Rmpfr,
-    stats,
-    truncdist,
-    abind,
+    Rcpp (>= 1.0.12),
     inline,
     compiler,
     VarSelLCM,
     clustMixType,
     poLCA,
-    RcppArmadillo,
     pheatmap,
     cowplot
 Suggests: 
-    joineRML,
-    knitr,
-    rmarkdown,
     survival,
-    survminer,
-    testthat (>= 3.0.0)
+    survminer
 LinkingTo: 
-    Rcpp,
-    RcppArmadillo,
-VignetteBuilder: 
-    knitr
+    Rcpp, 
+    RcppArmadillo
 RoxygenNote: 7.3.1

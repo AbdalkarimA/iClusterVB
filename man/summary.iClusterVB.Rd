@@ -19,4 +19,5 @@ Outputs a summary based on an iClusterVB object
 }
 \examples{
 summary(fit_iClusterVB)
+
 }

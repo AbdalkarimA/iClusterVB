@@ -30,6 +30,7 @@ Returns a probability inclusion plot or plots.
 Generates a probability inclusion plot based on an iClusterVB object
 }
 \examples{
-piplot(fit_iClusterVB, ylab = "Probability" , default_title = TRUE, title = NULL)
+piplot(fit_iClusterVB, ylab = "Probability", default_title = TRUE, title = NULL)
 piplot(fit_iClusterVB)
+
 }
