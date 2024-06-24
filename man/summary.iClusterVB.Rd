@@ -9,10 +9,10 @@ summary.iClusterVB(object, vs_prob = NULL, ...)
 \arguments{
 \item{object}{A fitted iClusterVB object.}
 
-\item{vs_prob}{Input to count the number of variables that meet he minimum probability of inclusion vs_prob. Default is 0.5. Only works for VS_method = 1.}
+\item{vs_prob}{Input to count the number of variables that meet the minimum probability of inclusion vs_prob. Default is 0.5. Only works for VS_method = 1.}
 }
 \value{
-Returns a summary showing the initialization method, the cluster memberships, and the number of variables for which the probabilty of inclusion is above vs_prob
+Returns a summary showing the initialization method, the cluster memberships, and the number of variables for which the probability of inclusion is above vs_prob
 }
 \description{
 Outputs a summary based on an iClusterVB object
