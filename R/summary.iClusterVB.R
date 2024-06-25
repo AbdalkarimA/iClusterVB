@@ -5,7 +5,7 @@
 #' @return Returns a summary showing the initialization method, the cluster memberships, and the number of variables for which the probability of inclusion is above vs_prob
 #' @export
 #' @examples
-#' summary(fit_iClusterVB)
+#' summary.iClusterVB(fit_iClusterVB)
 #'
 #' @useDynLib iClusterVB, .registration=TRUE
 

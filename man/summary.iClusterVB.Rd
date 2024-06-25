@@ -18,6 +18,6 @@ Returns a summary showing the initialization method, the cluster memberships, an
 Outputs a summary based on an iClusterVB object
 }
 \examples{
-summary(fit_iClusterVB)
+summary.iClusterVB(fit_iClusterVB)
 
 }
