@@ -2,7 +2,7 @@
 % Please edit documentation in R/iClusterVB.R
 \name{iClusterVB}
 \alias{iClusterVB}
-\title{Fast, integrative clustering of multi-view data using a Variational Bayes Approach}
+\title{Variational Bayes clustering of multi-view data}
 \usage{
 iClusterVB(
   mydata,
@@ -68,7 +68,7 @@ fit$model_parameters$rho[[r]], r = 1,...,R. The clusters can be can be accessed 
 table(fit$cluster)|. A summary output can be obtained using the function summary.iClusterVB(object, vs_prob,...)
 }
 \description{
-Fast, integrative clustering of multi-view data using a Variational Bayes Approach
+\verb{iCusterVB} is a function based on a Variational Bayes approach to conduct clustering of multi-view data.
 }
 \examples{
 iClusterVB(mydata = dat1, dist = c("gaussian", "multinomial", "gaussian", "poisson"), K = 6, initial_method = "kproto")

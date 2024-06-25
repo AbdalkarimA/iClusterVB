@@ -1,4 +1,6 @@
-#' Fast, integrative clustering of multi-view data using a Variational Bayes Approach
+#' Variational Bayes clustering of multi-view data
+#'
+#' \verb{iCusterVB} is a function based on a Variational Bayes approach to conduct clustering of multi-view data.
 #'
 #' @param mydata input data as a list of length R, where R is the number of data sets.
 #' @param dist a vector of length R specifying the type of data, or distribution - dist = 'gaussian' (for continuous data),
