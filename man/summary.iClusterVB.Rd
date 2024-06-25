@@ -4,7 +4,7 @@
 \alias{summary.iClusterVB}
 \title{Outputs a summary based on an iClusterVB object}
 \usage{
-\method{summary}{iClusterVB}(object, ...)
+summary.iClusterVB(object, ...)
 }
 \arguments{
 \item{object}{A fitted iClusterVB object.}

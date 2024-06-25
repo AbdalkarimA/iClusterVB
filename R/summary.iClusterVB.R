@@ -4,7 +4,6 @@
 #' @param vs_prob Input to count the number of variables that meet the minimum probability of inclusion vs_prob. Default is 0.5. Only works for VS_method = 1.
 #' @return Returns a summary showing the initialization method, the cluster memberships, and the number of variables for which the probability of inclusion is above vs_prob
 #' @export
-#' @method summary iClusterVB
 #' @examples
 #' summary(fit_iClusterVB)
 #'
