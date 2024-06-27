@@ -4,27 +4,31 @@
 \alias{chmap}
 \title{Generates a heat map based on an iClusterVB object}
 \usage{
-chmap(fit, rho = 0, nvars = NULL, title = NULL, cols = NULL)
+chmap(fit, rho = 0, title = NULL, cols = NULL, ...)
 }
 \arguments{
 \item{fit}{A fitted iClusterVB object.}
 
-\item{rho}{The minimum probability of inclusion for variables to show. Default is 0. Only works for VS_method = 1.}
+\item{rho}{The minimum probability of inclusion for variables to show.
+Default is 0. Only works for VS_method = 1.}
 
-\item{nvars}{A numeric vector or a single value. The number of variables to show; defaults to all. Only works for VS_method = 0.}
+\item{title}{A character vector or a single value. Title of the heat map;
+defaults to "View 1,..., R - Distribution".}
 
-\item{title}{A character vector or a single value. Title of the heat map; defaults to "View 1,..R - Distribution".}
+\item{cols}{A vector of colors to use for the clusters; defaults to a random
+selection of colors.}
 
-\item{cols}{A vector of colors to use for the clusters; defaults to a random selection of colors.}
+\item{...}{Additional arguments to be passed down to
+\code{\link[pheatmap]{pheatmap}}}
 }
 \value{
-Returns a heat map.
+Returns a heat map for each data view.
 }
 \description{
 Generates a heat map based on an iClusterVB object
 }
 \examples{
-chmap(fit_iClusterVB, nvars = 50, title = c("View 1", "View 2"), cols = c("green", "blue", "purple", "red"))
+chmap(fit_iClusterVB, rho = 0.75, title = c("View 1", "View 2"), cols = c("green", "blue", "purple", "red"))
 chmap(fit_iClusterVB)
 
 }

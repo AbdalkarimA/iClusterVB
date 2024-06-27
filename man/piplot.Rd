@@ -15,13 +15,16 @@ piplot(
 \arguments{
 \item{fit}{A fitted iClusterVB object.}
 
-\item{combined_plot}{LOGICAL. Whether to plot all the plots together or separately; defaults to TRUE (together).}
+\item{combined_plot}{LOGICAL. Whether to plot all the plots together or
+separately; defaults to TRUE (together).}
 
 \item{ylab}{The y-axis label; defaults to "Probability of Inclusion".}
 
-\item{default_title}{LOGICAL; defaults is TRUE, which outputs "View 1,..R - Distribution".}
+\item{default_title}{LOGICAL; defaults is TRUE, which outputs "View 1,..R -
+Distribution".}
 
-\item{title}{The title of the plots. It can be a character vector or a single value; default outputs the default title.}
+\item{title}{The title of the plots. It can be a character vector or a single
+value; default outputs the default title.}
 }
 \value{
 Returns a probability inclusion plot or plots.

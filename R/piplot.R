@@ -1,18 +1,20 @@
 #' Generates a probability inclusion plot based on an iClusterVB object
 #'
 #' @param fit A fitted iClusterVB object.
-#' @param combined_plot LOGICAL. Whether to plot all the plots together or separately; defaults to TRUE (together).
+#' @param combined_plot LOGICAL. Whether to plot all the plots together or
+#'   separately; defaults to TRUE (together).
 #' @param ylab The y-axis label; defaults to "Probability of Inclusion".
-#' @param default_title LOGICAL; defaults is TRUE, which outputs "View 1,..R - Distribution".
-#' @param title The title of the plots. It can be a character vector or a single value; default outputs the default title.
-#' @import ggplot2 cowplot
-#'
+#' @param default_title LOGICAL; defaults is TRUE, which outputs "View 1,..R -
+#'   Distribution".
+#' @param title The title of the plots. It can be a character vector or a single
+#'   value; default outputs the default title.
 #'
 #' @return Returns a probability inclusion plot or plots.
 #' @examples
 #' piplot(fit_iClusterVB, ylab = "Probability", default_title = TRUE, title = NULL)
 #' piplot(fit_iClusterVB)
 #'
+#' @import ggplot2 cowplot
 #' @export
 #' @useDynLib iClusterVB, .registration=TRUE
 
