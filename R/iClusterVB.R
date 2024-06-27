@@ -6,55 +6,52 @@
 #' computational complexities and challenges of modern biomedical studies. By
 #' employing variational Bayesian inference, iClusterVB facilitates effective
 #' feature selection and identification of disease subtypes, enhancing clinical
-#' decision-making. Leverage iClusterVB to
-#' advance your data analysis and uncover meaningful insights in heterogeneous
-#' disease research.
+#' decision-making. Leverage iClusterVB to advance your data analysis and
+#' uncover meaningful insights in heterogeneous disease research.
 #'
-#' @param mydata input data as a list of length R, where R is the number of data
-#'   sets.
-#' @param dist a vector of length R specifying the type of data, or distribution
-#'   - dist = 'gaussian' (for continuous data), 'multinomial' (for binary or
-#'   categorical data), and 'poisson' (for count data).
-#' @param K The maximum number of clusters, with a default of 10. The algorithm
-#'   will converge to yield a model that is composed of dominant clusters where
-#'   redundant clusters are removed, automating the process of determining the
-#'   number of clusters.
-#' @param initial_method the initialization method for the cluster allocation -
-#'   "VarSelLCM" for VarSelLCM,  "random" for a random sample, "kproto" for
-#'   k-prototypes, "kmeans" for k-means (continuous data only), "mclust" for
-#'   mclust(continuous data only), or "lca" for poLCA(categorical data only).
-#'   The default method is VarSelLCM.
-#' @param VS_method the variable selection method -  0 = clustering without
-#'   variable selection, 1 = clustering with variable selection. The default is
-#'   0, clustering without variable selection.
+#' @param mydata A list of length R, where R is the number of datasets,
+#'   containing the input data.
+#' @param dist A vector of length R specifying the type of data or distribution.
+#'   Options include: 'gaussian' (for continuous data), 'multinomial' (for
+#'   binary or categorical data), and 'poisson' (for count data).
+#' @param K The maximum number of clusters, with a default value of 10. The
+#'   algorithm will converge to a model with dominant clusters, removing
+#'   redundant clusters and automating the determination of the number of
+#'   clusters.
+#' @param initial_method The initialization method for cluster allocation.
+#'   Options include: "VarSelLCM" (default), "random", "kproto" (k-prototypes),
+#'   "kmeans" (continuous data only), "mclust" (continuous data only), or "lca"
+#'   (poLCA, categorical data only).
+#' @param VS_method The variable selection method. Options are 0 for clustering
+#'   without variable selection (default) and 1 for clustering with variable
+#'   selection.
 #' @param initial_cluster The initial cluster membership. The default is NULL,
-#'   which uses initial_method for initial cluster allocation. If it is not
-#'   NULL, it will overwrite the previous initial values setting for this
-#'   parameter.
-#' @param initial_vs_prob the initial variable selection probability, a scalar.
+#'   which uses initial_method for initial cluster allocation. If not NULL, it
+#'   will override the initial values setting for this parameter.
+#' @param initial_vs_prob The initial variable selection probability, a scalar.
 #'   The default is NULL, which assigns a value of 0.5.
-#' @param initial_fit initial values based on a previously fitted iClusterVB
+#' @param initial_fit Initial values based on a previously fitted iClusterVB
 #'   model (an iClusterVB object). The default is NULL.
-#' @param initial_omega customized initial values for variable inclusion
-#'   probabilities. The default is NULL. If the argument is not NULL, it will
-#'   overwrite the previous initial values setting for this parameter. If
-#'   VS_method = 1, initial_omega is a list of length R, and each element of the
-#'   list is an array with dim=c(N,p[[r]])). N is the sample size and p[[r]] is
-#'   the number of variables for dataset r, r = 1,...,R.
+#' @param initial_omega Customized initial values for variable inclusion
+#'   probabilities. The default is NULL. If not NULL, it will override the
+#'   initial values setting for this parameter. If VS_method = 1, initial_omega
+#'   is a list of length R, with each element being an array with dimensions
+#'   {dim=c(N, p[[r]])}. Here, N is the sample size and p[[r]] is the
+#'   number of variables for dataset r, where r = 1, ..., R.
 #' @param input_hyper_parameters the initial hyper-parameters of the prior
 #'   distributions for the model. The default is NULL, which assigns alpha_00 =
 #'   0.001, mu_00 = 0, s2_00 = 100, a_00 = 1, b_00 = 1,kappa_00 = 1, u_00 = 1,
 #'   v_00 = 1.
-#' @param max_iter the maximum number of iteration of the VB algorithm. The
+#' @param max_iter The maximum number of iterations for the VB algorithm. The
 #'   default is 200.
-#' @param early_stop whether to stop the algorithm when it converges or continue
-#'   until it reaches max_iter. 1 - the algorithm stops when it converges, 0 -
-#'   the algorithm stops when it reaches the maximum iteration (regardless of
-#'   whether it converges or not). The default is 1, the algorithm stops when it
-#'   converges.
-#' @param per print information every "per" iteration. The default is 10
-#' @param convergence_threshold define a convergence threshold for the change in
+#' @param early_stop Whether to stop the algorithm upon convergence or to
+#'   continue until \code{max_iter} is reached. Options are 1 (default) to stop
+#'   when the algorithm converges, and 0 to stop only when \code{max_iter} is
+#'   reached.
+#' @param per Print information every "per" iterations. The default is 10.
+#' @param convergence_threshold The convergence threshold for the change in
 #'   ELBO. The default is 0.0001.
+#'
 #' @return The iClusterVB function creates an object of class `iClusterVB`, a
 #'   list. The variable inclusion probabilities can be accessed through
 #'   fit$model_parameters$rho[[r]], r = 1,...,R. The clusters can be can be
@@ -62,7 +59,14 @@
 #'   table(fit$cluster)|. A summary output can be obtained using the function
 #'   summary.iClusterVB(object, vs_prob,...)
 #' @examples
-#' iClusterVB(mydata = dat1, dist = c("gaussian", "multinomial", "gaussian", "poisson"), K = 6, initial_method = "kproto")
+#' iClusterVB(
+#' mydata = dat1,
+#' dist = c("gaussian", "gaussian", "multinomial", "poisson"),
+#' K = 8,
+#' VS_method = 1,
+#' max_iter = 10, # This is a time-intensive step, for the purpose of testing the code, use a small value.
+#' # For more accurate results, use a larger value.
+#' )
 #'
 #' @import mvtnorm MCMCpack inline compiler VarSelLCM cluster clustMixType poLCA
 #' @rawNamespace import(mclust, except = dmvnorm)
@@ -602,7 +606,7 @@ iClusterVB <- function(
     res_CAVI$algo <- "CAVI_algorithm_global"
   }
 
-
+  class(res_CAVI) <- "iClusterVB"
   # return results
   res_CAVI
 }

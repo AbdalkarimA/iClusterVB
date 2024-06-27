@@ -9,14 +9,14 @@ chmap(fit, rho = 0, title = NULL, cols = NULL, ...)
 \arguments{
 \item{fit}{A fitted iClusterVB object.}
 
-\item{rho}{The minimum probability of inclusion for variables to show.
-Default is 0. Only works for VS_method = 1.}
+\item{rho}{The minimum probability of inclusion for variables shown on the
+heatmap. Default is 0. Only useful for VS_method = 1.}
 
-\item{title}{A character vector or a single value. Title of the heat map;
-defaults to "View 1,..., R - Distribution".}
+\item{title}{A character vector or a single value. Title of the heat map. The
+default is "View 1 - Distribution 1", ..., "View R - Distribution R".}
 
-\item{cols}{A vector of colors to use for the clusters; defaults to a random
-selection of colors.}
+\item{cols}{A vector of colors to use for the clusters. The default is a
+random selection of colors.}
 
 \item{...}{Additional arguments to be passed down to
 \code{\link[pheatmap]{pheatmap}}}

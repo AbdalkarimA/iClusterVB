@@ -1,17 +1,17 @@
 #' Generates a probability inclusion plot based on an iClusterVB object
 #'
 #' @param fit A fitted iClusterVB object.
-#' @param combined_plot LOGICAL. Whether to plot all the plots together or
-#'   separately; defaults to TRUE (together).
-#' @param ylab The y-axis label; defaults to "Probability of Inclusion".
-#' @param default_title LOGICAL; defaults is TRUE, which outputs "View 1,..R -
-#'   Distribution".
+#' @param plot_grid LOGICAL. Whether to use the \code{\link[cowplot]{plot_grid}}
+#'   function from the \bold{cowplot} package. The default is TRUE.
+#' @param ylab The y-axis label. The default is "Probability of Inclusion".
 #' @param title The title of the plots. It can be a character vector or a single
-#'   value; default outputs the default title.
+#'   value. The default output is "View 1 - Distribution 1", ..., "View R - Distribution R".
+#' @param ... Additional arguments to add to the
+#'   \code{\link[cowplot]{plot_grid}} function.
 #'
 #' @return Returns a probability inclusion plot or plots.
 #' @examples
-#' piplot(fit_iClusterVB, ylab = "Probability", default_title = TRUE, title = NULL)
+#' piplot(fit_iClusterVB, ylab = "Probability", title = NULL, align = "hv", nrow = 2, ncol = 2)
 #' piplot(fit_iClusterVB)
 #'
 #' @import ggplot2 cowplot
@@ -19,7 +19,7 @@
 #' @useDynLib iClusterVB, .registration=TRUE
 
 
-piplot <- function(fit, combined_plot = TRUE, ylab = "Probability of Inclusion", default_title = TRUE, title = NULL) {
+piplot <- function(fit, plot_grid = TRUE, ylab = "Probability of Inclusion", title = NULL, ...) {
   for (i in 1:length(fit$model_parameters$rho)) {
     assign(paste("dat", i, sep = ""), data.frame(
       varid = 1:length(fit$model_parameters$rho[[i]]),
@@ -29,7 +29,7 @@ piplot <- function(fit, combined_plot = TRUE, ylab = "Probability of Inclusion",
 
   gp_rho <- list()
 
-  if (default_title == TRUE & is.null(title)) {
+  if (is.null(title)) {
     title <- c()
     title <- paste(
       "View", 1:length(fit$model_parameters$rho), "-",
@@ -38,7 +38,8 @@ piplot <- function(fit, combined_plot = TRUE, ylab = "Probability of Inclusion",
   }
 
   for (i in 1:length(fit$model_parameters$rho)) {
-    gp_rho[[i]] <- ggplot2::ggplot(data = get(paste("dat", i, sep = "")), mapping = ggplot2::aes(x = reorder(varid, rho), y = rho, fill = rho)) +
+    gp_rho[[i]] <- ggplot2::ggplot(data = get(paste("dat", i, sep = "")),
+                                   mapping = ggplot2::aes(x = reorder(varid, rho), y = rho, fill = rho)) +
       ggplot2::geom_bar(stat = "identity") +
       ggplot2::ggtitle(ifelse(length(title) > 1, title[i], title)) +
       ggplot2::ylim(c(0, 1)) +
@@ -63,12 +64,18 @@ piplot <- function(fit, combined_plot = TRUE, ylab = "Probability of Inclusion",
       ggplot2::coord_polar()
   }
 
-  if (combined_plot == TRUE) {
+
+  args <- list(...)
+
+  if (!("labels" %in% names(args))) {
+    labels <- paste("(", LETTERS[1:length(fit$model_parameters$rho)], ")", sep = "")
+  }
+
+  if (plot_grid == TRUE) {
     cowplot::plot_grid(
       plotlist = gp_rho,
-      labels = paste("(", LETTERS[1:length(fit$model_parameters$rho)], ")", sep = ""),
-      nrow = 2,
-      align = "hv"
+      labels = labels,
+      ...
     )
   } else {
     gp_rho[1:length(fit$model_parameters$rho)]

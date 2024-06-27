@@ -10,7 +10,7 @@
 \item{object}{A fitted iClusterVB object.}
 
 \item{rho}{The minimum posterior inclusion probability of interest to count
-the number of variables that >= it. Default is 0.5. Only works for
+the number of variables that are >= \code{rho}. Default is 0.5. Only works for
 VS_method = 1.}
 
 \item{...}{Potential further arguments}
@@ -22,6 +22,7 @@ Returns a summary list for an `agnes` object.
 Generic summary method for `iClusterVB` objects
 }
 \examples{
-summary(fit_iClusterVB)
+## S3 method for class 'iClusterVB'
+summary(fit_iClusterVB, rho = 0.5, ...)
 
 }

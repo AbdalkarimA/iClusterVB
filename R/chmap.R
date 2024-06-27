@@ -1,12 +1,12 @@
 #' Generates a heat map based on an iClusterVB object
 #'
 #' @param fit A fitted iClusterVB object.
-#' @param rho The minimum probability of inclusion for variables to show.
-#'   Default is 0. Only works for VS_method = 1.
-#' @param title A character vector or a single value. Title of the heat map;
-#'   defaults to "View 1,..., R - Distribution".
-#' @param cols A vector of colors to use for the clusters; defaults to a random
-#'   selection of colors.
+#' @param rho The minimum probability of inclusion for variables shown on the
+#'   heatmap. Default is 0. Only useful for VS_method = 1.
+#' @param title A character vector or a single value. Title of the heat map. The
+#'   default is "View 1 - Distribution 1", ..., "View R - Distribution R".
+#' @param cols A vector of colors to use for the clusters. The default is a
+#'   random selection of colors.
 #' @param ... Additional arguments to be passed down to
 #'   \code{\link[pheatmap]{pheatmap}}
 #'

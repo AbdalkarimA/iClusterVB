@@ -6,25 +6,25 @@
 \usage{
 piplot(
   fit,
-  combined_plot = TRUE,
+  plot_grid = TRUE,
   ylab = "Probability of Inclusion",
-  default_title = TRUE,
-  title = NULL
+  title = NULL,
+  ...
 )
 }
 \arguments{
 \item{fit}{A fitted iClusterVB object.}
 
-\item{combined_plot}{LOGICAL. Whether to plot all the plots together or
-separately; defaults to TRUE (together).}
+\item{plot_grid}{LOGICAL. Whether to use the \code{\link[cowplot]{plot_grid}}
+function from the \bold{cowplot} package. The default is TRUE.}
 
-\item{ylab}{The y-axis label; defaults to "Probability of Inclusion".}
-
-\item{default_title}{LOGICAL; defaults is TRUE, which outputs "View 1,..R -
-Distribution".}
+\item{ylab}{The y-axis label. The default is "Probability of Inclusion".}
 
 \item{title}{The title of the plots. It can be a character vector or a single
-value; default outputs the default title.}
+value. The default output is "View 1 - Distribution 1", ..., "View R - Distribution R".}
+
+\item{...}{Additional arguments to add to the
+\code{\link[cowplot]{plot_grid}} function.}
 }
 \value{
 Returns a probability inclusion plot or plots.
@@ -33,7 +33,7 @@ Returns a probability inclusion plot or plots.
 Generates a probability inclusion plot based on an iClusterVB object
 }
 \examples{
-piplot(fit_iClusterVB, ylab = "Probability", default_title = TRUE, title = NULL)
+piplot(fit_iClusterVB, ylab = "Probability", title = NULL, align = "hv", nrow = 2, ncol = 2)
 piplot(fit_iClusterVB)
 
 }
