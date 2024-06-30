@@ -5,7 +5,8 @@
 #'   function from the \bold{cowplot} package. The default is TRUE.
 #' @param ylab The y-axis label. The default is "Probability of Inclusion".
 #' @param title The title of the plots. It can be a character vector or a single
-#'   value. The default output is "View 1 - Distribution 1", ..., "View R - Distribution R".
+#'   value. The default output is "View 1 - Distribution 1", ..., "View R -
+#'   Distribution R".
 #' @param ... Additional arguments to add to the
 #'   \code{\link[cowplot]{plot_grid}} function.
 #'

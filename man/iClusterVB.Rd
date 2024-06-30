@@ -3,7 +3,7 @@
 \name{iClusterVB}
 \alias{iClusterVB}
 \title{Fast Integrative Clustering for High-Dimensional Multi-View Data Using
-Variational Bayesian Inference}
+  Variational Bayesian Inference}
 \usage{
 iClusterVB(
   mydata,
@@ -24,7 +24,8 @@ iClusterVB(
 }
 \arguments{
 \item{mydata}{A list of length R, where R is the number of datasets,
-containing the input data.}
+containing the input data. \itemize{\item{Note: For \bold{categorical} data,
+\code{0}'s must be re-coded to another, non-\code{0} value.}}}
 
 \item{dist}{A vector of length R specifying the type of data or distribution.
 Options include: 'gaussian' (for continuous data), 'multinomial' (for
@@ -58,10 +59,10 @@ model (an iClusterVB object). The default is NULL.}
 probabilities. The default is NULL. If not NULL, it will override the
 initial values setting for this parameter. If VS_method = 1, initial_omega
 is a list of length R, with each element being an array with dimensions
-{dim=c(N, p[[r]])}. Here, N is the sample size and p[[r]] is the
-number of variables for dataset r, where r = 1, ..., R.}
+{dim=c(N, p[[r]])}. Here, N is the sample size and p[[r]] is the number of
+variables for dataset r, where r = 1, ..., R.}
 
-\item{input_hyper_parameters}{the initial hyper-parameters of the prior
+\item{input_hyper_parameters}{The initial hyper-parameters of the prior
 distributions for the model. The default is NULL, which assigns alpha_00 =
 0.001, mu_00 = 0, s2_00 = 100, a_00 = 1, b_00 = 1,kappa_00 = 1, u_00 = 1,
 v_00 = 1.}
@@ -80,30 +81,59 @@ reached.}
 ELBO. The default is 0.0001.}
 }
 \value{
-The iClusterVB function creates an object of class `iClusterVB`, a
-  list. The variable inclusion probabilities can be accessed through
-  fit$model_parameters$rho[[r]], r = 1,...,R. The clusters can be can be
-  accessed through fit$cluster, although a more useful output would be
-  table(fit$cluster)|. A summary output can be obtained using the function
-  summary.iClusterVB(object, vs_prob,...)
+The \code{iClusterVB} function creates an object (list) of class
+  \code{iClusterVB}. Relevant outputs include:
+
+\itemize{
+ \item{\code{elbo}:}{ The evidence lower bound for each iteration.}
+ \item{\code{cluster}:}{ The cluster assigned to each individual.}
+ \item{\code{initial_values}:}{ A list of the initial values.}
+ \item{\code{hyper_parameters}:}{ A list of the hyper-parameters.}
+ \item{\code{model_parameters}:}{ A list of the model parameters after the algorithm is run.
+   \itemize{
+     \item{Of particular interest is \code{rho}, a list of the posterior
+           inclusion probabilities for the features in each of the data views.
+           This is probability of including a certain predictor in the model, given the observations.
+           This is only available if \code{VS_method = 1}.}}}
+}
 }
 \description{
-`iClusterVB` offers a novel, fast, and integrative approach to clustering
-high-dimensional, mixed-type, and multi-view data, addressing the
-computational complexities and challenges of modern biomedical studies. By
-employing variational Bayesian inference, iClusterVB facilitates effective
-feature selection and identification of disease subtypes, enhancing clinical
-decision-making. Leverage iClusterVB to advance your data analysis and
-uncover meaningful insights in heterogeneous disease research.
+`iClusterVB` offers a novel, fast, and integrative approach to
+  clustering high-dimensional, mixed-type, and multi-view data, addressing
+  the computational complexities and challenges of modern biomedical studies.
+  By employing variational Bayesian inference, iClusterVB facilitates
+  effective feature selection and identification of disease subtypes,
+  enhancing clinical decision-making. Leverage iClusterVB to advance your
+  data analysis and uncover meaningful insights in heterogeneous disease
+  research.
+}
+\note{
+If any of the data views are "gaussian", please include them
+  \bold{first}, both in the input data \code{mydata} and correspondingly in
+  the
+  distribution vector \code{dist}. For example, \code{dist <-
+  c("gaussian","gaussian", "poisson", "multinomial")}, and \bold{not}
+  \code{dist <- c("poisson", "gaussian","gaussian", "multinomial")} or
+  \code{dist <- c("gaussian", "poisson", "gaussian", "multinomial")}
 }
 \examples{
-iClusterVB(
-mydata = dat1,
-dist = c("gaussian", "gaussian", "multinomial", "poisson"),
-K = 8,
-VS_method = 1,
-max_iter = 10, # This is a time-intensive step, for the purpose of testing the code, use a small value.
-# For more accurate results, use a larger value.
-)
+  # sim_data comes with the iClusterVB package.
+  dat1 <- list(gauss_1 = sim_data$continuous1_data,
+               gauss_2 = sim_data$continuous2_data,
+               poisson_1 = sim_data$count_data,
+               multinomial_1 = sim_data$binary_data)
+
+  dist <- c("gaussian","gaussian",
+            "poisson", "multinomial")
+
+  fit_iClusterVB <- iClusterVB(mydata = dat1,
+                               dist = dist,
+                               K = 8,
+                               initial_method = "VarSelLCM",
+                               VS_method = 1,
+                               max_iter = 200) # This is a time-intensive step, for the purpose of testing the code, use a small value. For more accurate results, use a larger value.
+
+  # To get a summary of the model, we can use the `summary` function
+  summary(fit_iClusterVB)
 
 }

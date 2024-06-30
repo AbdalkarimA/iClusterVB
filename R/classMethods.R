@@ -41,6 +41,8 @@ summary.iClusterVB <- function(object, rho = 0.5, ...) {
 
   print(table(object$cluster))
 
+  cat("\n")
+
   if(!is.null(object$model_parameters$rho)) {
     for (i in 1:length(object$mydata)) {
       name <- paste("View", i, "-", object$dist[i], sep = " ")
