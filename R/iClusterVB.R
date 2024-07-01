@@ -88,6 +88,10 @@
 #'                poisson_1 = sim_data$count_data,
 #'                multinomial_1 = sim_data$binary_data)
 #'
+#'   # We re-code `0`s to `2`s
+#'
+#'   dat1$multinomial_1[dat1$multinomial_1 == 0] <- 2
+#'
 #'   dist <- c("gaussian","gaussian",
 #'             "poisson", "multinomial")
 #'
@@ -96,7 +100,7 @@
 #'                                K = 8,
 #'                                initial_method = "VarSelLCM",
 #'                                VS_method = 1,
-#'                                max_iter = 200) # This is a time-intensive step, for the purpose of testing the code, use a small value. For more accurate results, use a larger value.
+#'                                max_iter = 200) # This is a time-intensive step. For the purpose of testing the code, use a small value. For more accurate results, use a larger value.
 #'
 #'   # To get a summary of the model, we can use the `summary` function
 #'   summary(fit_iClusterVB)
