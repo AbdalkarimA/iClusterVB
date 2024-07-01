@@ -44,6 +44,9 @@ chmap <- function(fit, rho = 0, title = NULL, cols = NULL, ...) {
   title
   )
 
+
+  plot_list <- list()
+
   if (is.null(fit$model_parameters$rho)) {
     for (i in 1:length(fit$mydata)) {
       df <- as.data.frame(t(data.matrix(fit$mydata[[i]])))
@@ -51,11 +54,11 @@ chmap <- function(fit, rho = 0, title = NULL, cols = NULL, ...) {
       rownames(mat_col) <- colnames(df)
       df <- df[, order(as.numeric(fit$cluster))]
       mat_colors <- list(Clusters = cols)
-      pheatmap(df,
-               main = as.character(title[i]),
-               annotation_col = mat_col,
-               ...
-      )
+      plot_list[[i]] <- pheatmap(df,
+                                 main = as.character(title[i]),
+                                 annotation_col = mat_col,
+                                 ...
+      )[[4]]
     }
   } else if (!is.null(fit$model_parameters$rho)) {
     for (i in 1:length(fit$mydata)) {
@@ -64,11 +67,13 @@ chmap <- function(fit, rho = 0, title = NULL, cols = NULL, ...) {
       rownames(mat_col) <- colnames(df)
       df <- df[, order(as.numeric(fit$cluster))]
       mat_colors <- list(Clusters = cols)
-      pheatmap(df,
-               main = as.character(title[i]),
-               annotation_col = mat_col,
-               ...
-      )
+      plot_list[[i]] <- pheatmap(df,
+                                 main = as.character(title[i]),
+                                 annotation_col = mat_col,
+                                 ...
+      )[[4]]
     }
   }
+
+  return(invisible(plot_list))
 }
