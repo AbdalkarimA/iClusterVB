@@ -423,6 +423,11 @@ iClusterVB <- function(
   u_tilde <- list() # parameter for poisson distribution
   v_tilde <- list() # parameter for poisson distribution
   #----------------------------------------------------------------------------#
+
+  if(length(zz) != N) {
+    stop("Please use a different initialization method\n")
+  }
+
   for (r in 1:R) {
     # for continuous variables
     if (dist[r] == "gaussian") {

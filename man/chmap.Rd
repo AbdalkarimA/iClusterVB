@@ -4,7 +4,7 @@
 \alias{chmap}
 \title{Generates a heat map based on an iClusterVB object}
 \usage{
-chmap(fit, rho = 0, title = NULL, cols = NULL, ...)
+chmap(fit, rho = 0, cols = NULL, title = NULL, ...)
 }
 \arguments{
 \item{fit}{A fitted iClusterVB object.}
@@ -12,11 +12,10 @@ chmap(fit, rho = 0, title = NULL, cols = NULL, ...)
 \item{rho}{The minimum probability of inclusion for variables shown on the
 heatmap. Default is 0. Only useful for VS_method = 1.}
 
+\item{cols}{A vector of colors to use for the clusters. The default is a random selection of colors.}
+
 \item{title}{A character vector or a single value. Title of the heat map. The
 default is "View 1 - Distribution 1", ..., "View R - Distribution R".}
-
-\item{cols}{A vector of colors to use for the clusters. The default is a
-random selection of colors.}
 
 \item{...}{Additional arguments to be passed down to
 \code{\link[pheatmap]{pheatmap}}}
