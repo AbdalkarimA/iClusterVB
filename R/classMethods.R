@@ -68,6 +68,8 @@ summary.iClusterVB <- function(object, rho = 0.5, ...) {
 #'
 #' @return Returns an ELBO plot, a barplot of cluster proportions, and heatmaps
 #'   for each data view.
+#'
+#'
 #' @export
 #' @method plot iClusterVB
 #' @examples
@@ -76,21 +78,6 @@ summary.iClusterVB <- function(object, rho = 0.5, ...) {
 
 plot.iClusterVB <- function(fit) {
 
-
-  formals(pheatmap)[c(
-    "cluster_rows", "cluster_cols", "color", "treeheight_row", "treeheight_col", "scale",
-    "show_colnames", "show_rownames", "annotation_names_row", "annotation_names_col"
-  )] <- list(
-    cluster_rows = FALSE,
-    cluster_cols = FALSE,
-    color = colorRampPalette(c("navy", "white", "firebrick3"))(50), treeheight_row = 0,
-    treeheight_col = 0, scale = "row", show_colnames = FALSE,
-    show_rownames = FALSE, annotation_names_row = FALSE,
-    annotation_names_col = FALSE
-  )
-
-  devAskNewPage(ask = TRUE)
-
   plot(x = 1:fit$iter,
        y = fit$elbo[1:1:fit$iter],
        type = "o",
@@ -98,7 +85,7 @@ plot.iClusterVB <- function(fit) {
        xlab = "Iteration",
        ylab = "ELBO")
 
-
+  devAskNewPage(ask = TRUE)
 
   bar_plot_y <- round(fit[["model_parameters"]][["ppi"]][round(fit[["model_parameters"]][["ppi"]], digits = 4) > 0] * 100, digits = 2)
 
@@ -114,6 +101,21 @@ plot.iClusterVB <- function(fit) {
 
   text(x = bar_plot, y = bar_plot_y + 5, labels = paste(bar_plot_y, "%", sep = ""))
   text(x = bar_plot, y = -5, labels = paste("Cluster", unique(fit$cluster), sep = " "))
+
+
+  formals(pheatmap)[c(
+    "cluster_rows", "cluster_cols", "color", "treeheight_row", "treeheight_col", "scale",
+    "show_colnames", "show_rownames", "annotation_names_row", "annotation_names_col"
+  )] <- list(
+    cluster_rows = FALSE,
+    cluster_cols = FALSE,
+    color = colorRampPalette(c("navy", "white", "firebrick3"))(50), treeheight_row = 0,
+    treeheight_col = 0, scale = "row", show_colnames = FALSE,
+    show_rownames = FALSE, annotation_names_row = FALSE,
+    annotation_names_col = FALSE
+  )
+
+
 
   rho <- 0
 

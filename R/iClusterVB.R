@@ -41,7 +41,7 @@
 #'   is a list of length R, with each element being an array with dimensions
 #'   {dim=c(N, p[[r]])}. Here, N is the sample size and p[[r]] is the number of
 #'   variables for dataset r, where r = 1, ..., R.
-#' @param input_hyper_parameters The initial hyper-parameters of the prior
+#' @param input_hyper_parameters A list of the initial hyper-parameters of the prior
 #'   distributions for the model. The default is NULL, which assigns alpha_00 =
 #'   0.001, mu_00 = 0, s2_00 = 100, a_00 = 1, b_00 = 1,kappa_00 = 1, u_00 = 1,
 #'   v_00 = 1.
@@ -95,12 +95,16 @@
 #'   dist <- c("gaussian","gaussian",
 #'             "poisson", "multinomial")
 #'
+#'   # Note: `max_iter` is the time-intensive step.
+#'   # For the purpose of testing the code, use a small value (e.g. 10).
+#'   # For more accurate results, use a larger value (e.g. 200).
+#'
 #'   fit_iClusterVB <- iClusterVB(mydata = dat1,
 #'                                dist = dist,
 #'                                K = 8,
 #'                                initial_method = "VarSelLCM",
 #'                                VS_method = 1,
-#'                                max_iter = 200) # This is a time-intensive step. For the purpose of testing the code, use a small value. For more accurate results, use a larger value.
+#'                                max_iter = 200)
 #'
 #'   # To get a summary of the model, we can use the `summary` function
 #'   summary(fit_iClusterVB)
@@ -429,7 +433,7 @@ iClusterVB <- function(
   #----------------------------------------------------------------------------#
 
   if(length(zz) != N) {
-    stop("Please use a different initialization method\n")
+    stop("Please use a different initialization method or start with a lower `K` \n")
   }
 
   for (r in 1:R) {
@@ -481,7 +485,7 @@ iClusterVB <- function(
   # obtain initial values from the previous iClusterVB model
   if (is.null(initial_fit) == FALSE) {
     if (!(initial_fit$algo %in% c("CAVI_algorithm_standard", "CAVI_algorithm_global")) == TRUE) {
-      stop("initial_fit should be either 'CAVI_algorithm_standard' or 'CAVI_algorithm_global' class \n")
+      stop("initial_fit$algo should be either 'CAVI_algorithm_standard' or 'CAVI_algorithm_global' \n")
     }
 
     # clustering parameters

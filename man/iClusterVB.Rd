@@ -62,7 +62,7 @@ is a list of length R, with each element being an array with dimensions
 {dim=c(N, p[[r]])}. Here, N is the sample size and p[[r]] is the number of
 variables for dataset r, where r = 1, ..., R.}
 
-\item{input_hyper_parameters}{The initial hyper-parameters of the prior
+\item{input_hyper_parameters}{A list of the initial hyper-parameters of the prior
 distributions for the model. The default is NULL, which assigns alpha_00 =
 0.001, mu_00 = 0, s2_00 = 100, a_00 = 1, b_00 = 1,kappa_00 = 1, u_00 = 1,
 v_00 = 1.}
@@ -130,12 +130,16 @@ If any of the data views are "gaussian", please include them
   dist <- c("gaussian","gaussian",
             "poisson", "multinomial")
 
+  # Note: `max_iter` is the time-intensive step.
+  # For the purpose of testing the code, use a small value (e.g. 10).
+  # For more accurate results, use a larger value (e.g. 200).
+
   fit_iClusterVB <- iClusterVB(mydata = dat1,
                                dist = dist,
                                K = 8,
                                initial_method = "VarSelLCM",
                                VS_method = 1,
-                               max_iter = 200) # This is a time-intensive step. For the purpose of testing the code, use a small value. For more accurate results, use a larger value.
+                               max_iter = 200)
 
   # To get a summary of the model, we can use the `summary` function
   summary(fit_iClusterVB)
