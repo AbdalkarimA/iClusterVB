@@ -148,7 +148,7 @@ plot.iClusterVB <- function(fit) {
     }
   }
 
-  devAskNewPage(ask = NULL)
+  devAskNewPage(ask = FALSE)
 
 }
 
