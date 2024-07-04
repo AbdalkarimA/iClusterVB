@@ -36,7 +36,7 @@ chmap <- function(fit, rho = 0, cols = NULL, title = NULL, ...) {
     treeheight_col = 0, scale = "row", show_colnames = FALSE,
     show_rownames = FALSE, annotation_names_row = FALSE,
     annotation_names_col = FALSE,
-    annotation_colors = setNames(as.list(cols), paste("Cluster", sort(unique(fit$cluster))))
+    annotation_colors = list(Clusters = setNames(cols, paste("Cluster", sort(unique(fit$cluster)))))
   )
 
 
