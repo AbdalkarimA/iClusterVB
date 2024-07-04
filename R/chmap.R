@@ -35,7 +35,8 @@ chmap <- function(fit, rho = 0, cols = NULL, title = NULL, ...) {
     color = colorRampPalette(c("navy", "white", "firebrick3"))(50), treeheight_row = 0,
     treeheight_col = 0, scale = "row", show_colnames = FALSE,
     show_rownames = FALSE, annotation_names_row = FALSE,
-    annotation_names_col = FALSE, annotation_colors = list(Clusters = cols)
+    annotation_names_col = FALSE,
+    annotation_colors = setNames(as.list(cols), paste("Cluster", sort(unique(fit$cluster))))
   )
 
 
@@ -53,7 +54,7 @@ chmap <- function(fit, rho = 0, cols = NULL, title = NULL, ...) {
   if (is.null(fit$model_parameters$rho)) {
     for (i in 1:length(fit$mydata)) {
       df <- as.data.frame(t(data.matrix(fit$mydata[[i]])))
-      mat_col <- data.frame(Clusters = as.numeric(fit$cluster))
+      mat_col <- data.frame(Clusters = paste("Cluster", as.numeric(fit$cluster)))
       rownames(mat_col) <- colnames(df)
       df <- df[, order(as.numeric(fit$cluster))]
       mat_colors <- list(Clusters = cols)
@@ -66,7 +67,7 @@ chmap <- function(fit, rho = 0, cols = NULL, title = NULL, ...) {
   } else if (!is.null(fit$model_parameters$rho)) {
     for (i in 1:length(fit$mydata)) {
       df <- as.data.frame(t(data.matrix(fit$mydata[[i]][, fit$model_parameters$rho[[i]] >= rho])))
-      mat_col <- data.frame(Clusters = as.numeric(fit$cluster))
+      mat_col <- data.frame(Clusters = paste("Cluster", as.numeric(fit$cluster)))
       rownames(mat_col) <- colnames(df)
       df <- df[, order(as.numeric(fit$cluster))]
       mat_colors <- list(Clusters = cols)
