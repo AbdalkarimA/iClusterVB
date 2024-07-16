@@ -61,7 +61,7 @@ chmap <- function(fit, rho = 0, cols = NULL, title = NULL, ...) {
                         ...,
                         SIMPLIFY = FALSE)
 
-    plot_list <- mapply(function(x) x[4], plot_list, SIMPLIFY = FALSE)
+    plot_list <- sapply(plot_list, "[", 4)
   } else if (!is.null(fit$model_parameters$rho)) {
 
     names <- lapply(fit$model_parameters$rho, function(fit) which(fit > rho))
@@ -78,7 +78,7 @@ chmap <- function(fit, rho = 0, cols = NULL, title = NULL, ...) {
                         MoreArgs = list(annotation_col = mat_col),
                         ..., SIMPLIFY = FALSE)
 
-    plot_list <- mapply(function(x) x[4], plot_list, SIMPLIFY = FALSE)
+    plot_list <- sapply(plot_list, "[", 4)
   }
 
   return(invisible(plot_list))
