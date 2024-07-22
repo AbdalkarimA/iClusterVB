@@ -8,7 +8,7 @@
 #' @return Returns a summary list for an `agnes` object.
 #' @examples
 #' ## S3 method for class 'iClusterVB'
-#' summary(fit_iClusterVB, rho = 0.5, ...)
+#' \dontrun{summary(fit_iClusterVB, rho = 0.5)}
 #'
 #' @export
 #' @method summary iClusterVB

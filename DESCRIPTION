@@ -32,7 +32,10 @@ Imports:
     clustMixType,
     poLCA,
     pheatmap,
-    cowplot
+    cowplot,
+    grDevices,
+    stats,
+    graphics
 Suggests: 
     survival,
     survminer

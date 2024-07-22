@@ -23,6 +23,6 @@ Generic summary method for `iClusterVB` objects
 }
 \examples{
 ## S3 method for class 'iClusterVB'
-summary(fit_iClusterVB, rho = 0.5, ...)
+\dontrun{summary(fit_iClusterVB, rho = 0.5)}
 
 }
