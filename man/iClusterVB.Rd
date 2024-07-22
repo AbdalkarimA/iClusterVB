@@ -62,10 +62,10 @@ is a list of length R, with each element being an array with dimensions
 {dim=c(N, p[[r]])}. Here, N is the sample size and p[[r]] is the number of
 variables for dataset r, where r = 1, ..., R.}
 
-\item{input_hyper_parameters}{A list of the initial hyper-parameters of the prior
-distributions for the model. The default is NULL, which assigns alpha_00 =
-0.001, mu_00 = 0, s2_00 = 100, a_00 = 1, b_00 = 1,kappa_00 = 1, u_00 = 1,
-v_00 = 1.}
+\item{input_hyper_parameters}{A list of the initial hyper-parameters of the
+prior distributions for the model. The default is NULL, which assigns
+alpha_00 = 0.001, mu_00 = 0, s2_00 = 100, a_00 = 1, b_00 = 1,kappa_00 = 1,
+u_00 = 1, v_00 = 1.}
 
 \item{max_iter}{The maximum number of iterations for the VB algorithm. The
 default is 200.}
@@ -117,6 +117,7 @@ If any of the data views are "gaussian", please include them
   \code{dist <- c("gaussian", "poisson", "gaussian", "multinomial")}
 }
 \examples{
+\dontrun{
   # sim_data comes with the iClusterVB package.
   dat1 <- list(gauss_1 = sim_data$continuous1_data,
                gauss_2 = sim_data$continuous2_data,
@@ -143,5 +144,5 @@ If any of the data views are "gaussian", please include them
 
   # To get a summary of the model, we can use the `summary` function
   summary(fit_iClusterVB)
-
+}
 }

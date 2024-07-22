@@ -12,9 +12,10 @@
 #'
 #' @return Returns a probability inclusion plot or plots.
 #' @examples
+#' \dontrun{
 #' piplot(fit_iClusterVB, ylab = "Probability", title = NULL, align = "hv", nrow = 2, ncol = 2)
 #' piplot(fit_iClusterVB)
-#'
+#' }
 #' @import ggplot2 cowplot
 #' @export
 #' @useDynLib iClusterVB, .registration=TRUE

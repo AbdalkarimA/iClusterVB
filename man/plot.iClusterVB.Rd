@@ -17,5 +17,5 @@ Returns an ELBO plot, a barplot of cluster proportions, and heatmaps
 Generic plot method for `iClusterVB` objects
 }
 \examples{
-plot(fit_iClusterVB)
+\dontrun{plot(fit_iClusterVB)}
 }

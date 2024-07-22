@@ -11,10 +11,11 @@
 #'
 #' @return Returns a heat map for each data view.
 #' @examples
+#' \dontrun{
 #' chmap(fit_iClusterVB, rho = 0.75, title = c("View 1", "View 2"),
 #' cols = c("green", "blue", "purple", "red"))
 #' chmap(fit_iClusterVB)
-#'
+#' }
 #' @export chmap
 #' @import pheatmap
 #' @useDynLib iClusterVB, .registration=TRUE

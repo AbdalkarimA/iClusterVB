@@ -73,7 +73,7 @@ summary.iClusterVB <- function(object, rho = 0.5, ...) {
 #' @export
 #' @method plot iClusterVB
 #' @examples
-#' plot(fit_iClusterVB)
+#' \dontrun{plot(fit_iClusterVB)}
 
 
 plot.iClusterVB <- function(fit) {
@@ -103,50 +103,50 @@ plot.iClusterVB <- function(fit) {
   text(x = bar_plot, y = -5, labels = paste("Cluster", unique(fit$cluster), sep = " "))
 
 
-  formals(pheatmap)[c(
-    "cluster_rows", "cluster_cols", "color", "treeheight_row", "treeheight_col", "scale",
-    "show_colnames", "show_rownames", "annotation_names_row", "annotation_names_col"
-  )] <- list(
-    cluster_rows = FALSE,
-    cluster_cols = FALSE,
-    color = colorRampPalette(c("navy", "white", "firebrick3"))(50), treeheight_row = 0,
-    treeheight_col = 0, scale = "row", show_colnames = FALSE,
-    show_rownames = FALSE, annotation_names_row = FALSE,
-    annotation_names_col = FALSE
-  )
-
-
-
-  rho <- 0
-
-  title <- paste(
-    "View", 1:length(fit$mydata), "-",
-    tools::toTitleCase(fit$dist[1:length(fit$mydata)]))
-
-
-  if (is.null(fit$model_parameters$rho)) {
-    for (i in 1:length(fit$mydata)) {
-      df <- as.data.frame(t(data.matrix(fit$mydata[[i]])))
-      mat_col <- data.frame(Clusters = as.numeric(fit$cluster))
-      rownames(mat_col) <- colnames(df)
-      df <- df[, order(as.numeric(fit$cluster))]
-      pheatmap(df,
-               main = as.character(title[i]),
-               annotation_col = mat_col
-      )
-    }
-  } else if (!is.null(fit$model_parameters$rho)) {
-    for (i in 1:length(fit$mydata)) {
-      df <- as.data.frame(t(data.matrix(fit$mydata[[i]][, fit$model_parameters$rho[[i]] >= rho])))
-      mat_col <- data.frame(Clusters = as.numeric(fit$cluster))
-      rownames(mat_col) <- colnames(df)
-      df <- df[, order(as.numeric(fit$cluster))]
-      pheatmap(df,
-               main = as.character(title[i]),
-               annotation_col = mat_col
-      )
-    }
-  }
+  # formals(pheatmap)[c(
+  #   "cluster_rows", "cluster_cols", "color", "treeheight_row", "treeheight_col", "scale",
+  #   "show_colnames", "show_rownames", "annotation_names_row", "annotation_names_col"
+  # )] <- list(
+  #   cluster_rows = FALSE,
+  #   cluster_cols = FALSE,
+  #   color = colorRampPalette(c("navy", "white", "firebrick3"))(50), treeheight_row = 0,
+  #   treeheight_col = 0, scale = "row", show_colnames = FALSE,
+  #   show_rownames = FALSE, annotation_names_row = FALSE,
+  #   annotation_names_col = FALSE
+  # )
+  #
+  #
+  #
+  # rho <- 0
+  #
+  # title <- paste(
+  #   "View", 1:length(fit$mydata), "-",
+  #   tools::toTitleCase(fit$dist[1:length(fit$mydata)]))
+  #
+  #
+  # if (is.null(fit$model_parameters$rho)) {
+  #   for (i in 1:length(fit$mydata)) {
+  #     df <- as.data.frame(t(data.matrix(fit$mydata[[i]])))
+  #     mat_col <- data.frame(Clusters = as.numeric(fit$cluster))
+  #     rownames(mat_col) <- colnames(df)
+  #     df <- df[, order(as.numeric(fit$cluster))]
+  #     pheatmap(df,
+  #              main = as.character(title[i]),
+  #              annotation_col = mat_col
+  #     )
+  #   }
+  # } else if (!is.null(fit$model_parameters$rho)) {
+  #   for (i in 1:length(fit$mydata)) {
+  #     df <- as.data.frame(t(data.matrix(fit$mydata[[i]][, fit$model_parameters$rho[[i]] >= rho])))
+  #     mat_col <- data.frame(Clusters = as.numeric(fit$cluster))
+  #     rownames(mat_col) <- colnames(df)
+  #     df <- df[, order(as.numeric(fit$cluster))]
+  #     pheatmap(df,
+  #              main = as.character(title[i]),
+  #              annotation_col = mat_col
+  #     )
+  #   }
+  # }
 
   devAskNewPage(ask = FALSE)
 

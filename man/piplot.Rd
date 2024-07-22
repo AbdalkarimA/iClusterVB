@@ -34,7 +34,8 @@ Returns a probability inclusion plot or plots.
 Generates a probability inclusion plot based on an iClusterVB object
 }
 \examples{
+\dontrun{
 piplot(fit_iClusterVB, ylab = "Probability", title = NULL, align = "hv", nrow = 2, ncol = 2)
 piplot(fit_iClusterVB)
-
+}
 }

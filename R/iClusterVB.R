@@ -41,10 +41,10 @@
 #'   is a list of length R, with each element being an array with dimensions
 #'   {dim=c(N, p[[r]])}. Here, N is the sample size and p[[r]] is the number of
 #'   variables for dataset r, where r = 1, ..., R.
-#' @param input_hyper_parameters A list of the initial hyper-parameters of the prior
-#'   distributions for the model. The default is NULL, which assigns alpha_00 =
-#'   0.001, mu_00 = 0, s2_00 = 100, a_00 = 1, b_00 = 1,kappa_00 = 1, u_00 = 1,
-#'   v_00 = 1.
+#' @param input_hyper_parameters A list of the initial hyper-parameters of the
+#'   prior distributions for the model. The default is NULL, which assigns
+#'   alpha_00 = 0.001, mu_00 = 0, s2_00 = 100, a_00 = 1, b_00 = 1,kappa_00 = 1,
+#'   u_00 = 1, v_00 = 1.
 #' @param max_iter The maximum number of iterations for the VB algorithm. The
 #'   default is 200.
 #' @param early_stop Whether to stop the algorithm upon convergence or to
@@ -82,6 +82,7 @@
 #' }
 #'
 #' @examples
+#' \dontrun{
 #'   # sim_data comes with the iClusterVB package.
 #'   dat1 <- list(gauss_1 = sim_data$continuous1_data,
 #'                gauss_2 = sim_data$continuous2_data,
@@ -108,8 +109,11 @@
 #'
 #'   # To get a summary of the model, we can use the `summary` function
 #'   summary(fit_iClusterVB)
-#'
+#' }
 #' @import mvtnorm MCMCpack inline compiler VarSelLCM cluster clustMixType poLCA
+#' @importFrom grDevices colorRampPalette colors devAskNewPage topo.colors
+#' @importFrom graphics abline axis barplot text
+#' @importFrom stats aggregate kmeans model.matrix reorder setNames var
 #' @rawNamespace import(mclust, except = dmvnorm)
 #' @rawNamespace import(Rcpp, except = registerPlugin)
 #' @export iClusterVB
