@@ -1,12 +1,24 @@
 Package: iClusterVB
 Type: Package
 Title: Fast Integrative Clustering and Variable Selection for High Dimensional Data
+Authors@R: c(
+    person(given = "Abdalkarim", family = "Alnajjar", role = c("aut", "cre"), 
+           email = "abdalkarim.alnajjar@queensu.ca",
+           comment = c(ORCID = "0009-0008-4439-1214")),
+    person(given = "Zihang", family = "Lu", role = "aut", 
+           email = "zihang.lu@queensu.ca")
+  )
+Author: Abdalkarim Alnajjar [aut, cre] (<https://orcid.org/0009-0008-4439-1214>), 
+  Zihang Lu [aut]
+Description: The iClusterVB package in R provides a variational Bayesian approach for fast integrative clustering and variable selection, 
+  facilitating the analysis of high-dimensional datasets with applications in fields like cancer research, genomics, and more.
 Version: 0.1.0
-Maintainer: Abdalkarim Alnajjar <18aa135@queensu.ca>
-Description: More about what it does (maybe more than one line).
+Maintainer: Abdalkarim Alnajjar <abdalkarim.alnajjar@queensu.ca>
 License: MIT
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/AbdalkarimA/iClusterVB
+BugReports: https://github.com/AbdalkarimA/iClusterVB/issues
 Imports: 
     cluster,
     ggplot2,

@@ -27,7 +27,8 @@ Returns a heat map for each data view.
 Generates a heat map based on an iClusterVB object
 }
 \examples{
-chmap(fit_iClusterVB, rho = 0.75, title = c("View 1", "View 2"), cols = c("green", "blue", "purple", "red"))
+chmap(fit_iClusterVB, rho = 0.75, title = c("View 1", "View 2"),
+cols = c("green", "blue", "purple", "red"))
 chmap(fit_iClusterVB)
 
 }
