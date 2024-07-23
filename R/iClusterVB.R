@@ -115,6 +115,8 @@
 #' @importFrom grDevices colorRampPalette colors devAskNewPage topo.colors
 #' @importFrom graphics abline axis barplot text
 #' @importFrom stats aggregate kmeans model.matrix reorder setNames var
+#' @importFrom utils capture.output
+#' @importFrom R.utils nullfile
 #' @rawNamespace import(mclust, except = dmvnorm)
 #' @rawNamespace import(Rcpp, except = registerPlugin)
 #' @export iClusterVB

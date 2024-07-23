@@ -47,7 +47,7 @@ NULL
 #'   (TCGA, 2013). The Acute Myeloid Leukemia (laml_tcga) datasets were download
 #'   using the cBioPortal for Cancer Genomics tool (Cerami et al., 2012; Gao et
 #'   al., 2013). The 170 samples with gene expression data and mutation data
-#'   were included
+#'   were included.
 #'
 #' @docType data
 #' @name laml
@@ -65,7 +65,7 @@ NULL
 #'   chosen by Zainul Abidin and Westhead (2016) based on having the  highest ranked-based
 #'   coefficients of variation and standard deviation across the samples.
 #'   Some names may have been updated or corrected from the
-#'   supplementary material}
+#'   supplementary material.}
 #'
 #'
 #' @references Cancer Genome Atlas Research Network, Ley, T. J., Miller, C.,
