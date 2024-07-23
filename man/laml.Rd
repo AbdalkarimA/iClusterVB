@@ -3,6 +3,10 @@
 \docType{data}
 \name{laml}
 \alias{laml}
+\alias{laml.cli}
+\alias{laml.exp}
+\alias{laml.mut}
+\alias{gene_symbols_500}
 \title{LAML (Acute Myeloid Leukemia)  Data}
 \usage{
 data(laml)

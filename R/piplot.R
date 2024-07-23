@@ -22,6 +22,7 @@
 
 
 piplot <- function(fit, plot_grid = TRUE, ylab = "Probability of Inclusion", title = NULL, ...) {
+
   for (i in 1:length(fit$model_parameters$rho)) {
     assign(paste("dat", i, sep = ""), data.frame(
       varid = 1:length(fit$model_parameters$rho[[i]]),

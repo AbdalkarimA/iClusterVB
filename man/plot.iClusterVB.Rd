@@ -4,10 +4,12 @@
 \alias{plot.iClusterVB}
 \title{Generic plot method for `iClusterVB` objects}
 \usage{
-\method{plot}{iClusterVB}(fit)
+\method{plot}{iClusterVB}(fit, ...)
 }
 \arguments{
 \item{fit}{A fitted iClusterVB object.}
+
+\item{...}{Potential further arguments (unused)}
 }
 \value{
 Returns an ELBO plot, a barplot of cluster proportions, and heatmaps

@@ -51,6 +51,7 @@ NULL
 #'
 #' @docType data
 #' @name laml
+#' @aliases laml.cli laml.exp laml.mut gene_symbols_500
 #' @usage data(laml)
 #' @return Within the data file, there is: \itemize{\item{\code{laml.cli}:}{ A
 #'   dataframe of clinical information for the 170 samples.}
