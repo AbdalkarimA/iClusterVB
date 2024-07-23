@@ -343,7 +343,7 @@ iClusterVB <- function(
     #----------------------------------------------------------------------------#
     if (initial_method == "kproto") {
       # install.packages("clustMixType")
-      fit.kproto <- kproto_gower(x = data.frame(mydata_combine), k = K, lambda = rep(1, p_total))
+      fit.kproto <- kproto(x = data.frame(mydata_combine), k = K, lambda = rep(1, p_total))
       zz <- initial_cluster <- as.numeric(fit.kproto$cluster)
       table(fit.kproto$cluster)
     }

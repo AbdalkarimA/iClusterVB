@@ -99,7 +99,7 @@ plot.iClusterVB <- function(fit, ...) {
        labels = paste(seq(0, 100, 5), "%", sep = ""))
 
   text(x = bar_plot, y = bar_plot_y + 5, labels = paste(bar_plot_y, "%", sep = ""))
-  text(x = bar_plot, y = -5, labels = paste("Cluster", unique(fit$cluster), sep = " "))
+  text(x = bar_plot, y = -5, labels = paste("Cluster", sort(unique(fit$cluster)), sep = " "))
 }
 
 
