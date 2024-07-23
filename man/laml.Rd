@@ -6,32 +6,33 @@
 \alias{laml.cli}
 \alias{laml.exp}
 \alias{laml.mut}
-\alias{gene_symbols_500}
 \title{LAML (Acute Myeloid Leukemia)  Data}
 \usage{
 data(laml)
 }
 \value{
-Within the data file, there is: \item{\code{laml.cli}:}{ A
-  dataframe of clinical information for the 170 samples.}
+Within the data file, there is:
+  \item{\code{laml.cli}:}{ A dataframe
+  of clinical information for the 170 samples.}
   \item{\code{laml.exp}:}{ A
-  matrix of 170 samples and the gene expression values of 20495 genes.}
-  \item{\code{laml.mut}:}{ A
-  matrix of 170 samples and the mutation status of 1522 genes.
-  1 indicates the presence of mutation, and 0 indicated the
-  absence of mutation.}
-  \item{\code{gene_symbols_500}:}{ A character vector of 500 gene names
+  matrix of 170 samples and the gene expression values of the 500 genes
   chosen by Zainul Abidin and Westhead (2016) based on having the  highest ranked-based
   coefficients of variation and standard deviation across the samples.
   Some names may have been updated or corrected from the
   supplementary material.}
+  \item{\code{laml.mut}:}{ A
+  matrix of 170 samples and the mutation status of 156 genes that had >=2
+  mutations. 1 indicates the presence of mutation, and 0 indicates the
+  absence of mutation.}
 }
 \description{
 This is a subset of the LAML (Acute Myeloid Leukemia) data
   (TCGA, 2013). The Acute Myeloid Leukemia (laml_tcga) datasets were download
   using the cBioPortal for Cancer Genomics tool (Cerami et al., 2012; Gao et
   al., 2013). The 170 samples with gene expression data and mutation data
-  were included.
+  were included. Only a subset of the genes was selected,
+  as desribed below. To access the data containing all the genes, please
+  visit: https://github.com/AbdalkarimA/iClusterVB
 }
 \references{
 Cancer Genome Atlas Research Network, Ley, T. J., Miller, C.,

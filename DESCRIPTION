@@ -10,7 +10,7 @@ Authors@R: c(
   )
 Author: Abdalkarim Alnajjar [aut, cre] (<https://orcid.org/0009-0008-4439-1214>), 
   Zihang Lu [aut]
-Description: The iClusterVB package in R provides a variational Bayesian approach 
+Description: The 'iClusterVB' package in R provides a variational Bayesian approach 
     for fast integrative clustering and variable selection, facilitating the analysis 
     of high-dimensional datasets with applications in fields like cancer research, genomics, 
     and more.
@@ -47,5 +47,5 @@ Suggests:
 LinkingTo: 
     Rcpp, 
     RcppArmadillo
-Depends: R (>= 2.10)
+Depends: R (>= 3.5.0)
 RoxygenNote: 7.3.2

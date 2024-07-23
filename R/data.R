@@ -6,29 +6,31 @@
 #'   clusters was set to \eqn{K = 4}, and the cluster proportions were set at \eqn{\pi_1
 #'   = 0.25, \pi_2 = 0.25, \pi_3 = 0.25, \pi_4 = 0.25}, such that we have
 #'   balanced cluster proportions. Each of the data views had \eqn{p_r = 500}
-#'   features, \eqn{r = 1, \dots, 4}, but only 50, or 10\%, were relevant features
-#'   that contributed to the clustering, and the rest were noise features that
-#'   did not contribute to the clustering. In total, there were \eqn{p =
-#'   \sum_{r=1}^4 = 2000} features.
+#'   features, \eqn{r = 1, \dots, 4}, but only 50, or 10\%, were relevant
+#'   features that contributed to the clustering, and the rest were noise
+#'   features that did not contribute to the clustering. In total, there were
+#'   \eqn{p = \sum_{r=1}^4 = 2000} features.
 #'
 #'   For data view 1 (continuous), relevant features were generated from the
 #'   following normal distributions: \eqn{\text{N}(10, 1)} for Cluster 1,
-#'   \eqn{\text{N}(5, 1)} for Cluster 2, \eqn{\text{N}(-5, 1)} for Cluster 3, and
-#'   \eqn{\text{N}(-10, 1)} for Cluster 4, while noise features were generated from
-#'   \eqn{\text{N}(0, 1)}. For data view 2 (continuous), relevant features were
-#'   generated from the following normal distributions: \eqn{\text{N}(-10, 1)} for
-#'   Cluster 1,    \eqn{\text{N}(-5, 1)} for Cluster 2, \eqn{\text{N}(5, 1)} for Cluster
-#'   3, and \eqn{\text{N}(10, 1)} for Cluster 4, while noise features were generated
-#'   from \eqn{\text{N}(0, 1)}. For data view 3 (binary), relevant features were
-#'   generated from the following Bernoulli distributions:
-#'   \eqn{\text{Bernoulli}(0.05)} for Cluster 1,    \eqn{\text{Bernoulli}(0.2)} for
-#'   Cluster 2, \eqn{\text{Bernoulli}(0.4)} for Cluster 3, and
-#'   \eqn{\text{Bernoulli}(0.6)} for Cluster 4, while noise features were generated
-#'   from \eqn{\text{Bernoulli}(0.1)}. For data view 4 (count), relevant features
+#'   \eqn{\text{N}(5, 1)} for Cluster 2, \eqn{\text{N}(-5, 1)} for Cluster 3,
+#'   and \eqn{\text{N}(-10, 1)} for Cluster 4, while noise features were
+#'   generated from \eqn{\text{N}(0, 1)}. For data view 2 (continuous), relevant
+#'   features were generated from the following normal distributions:
+#'   \eqn{\text{N}(-10, 1)} for Cluster 1,    \eqn{\text{N}(-5, 1)} for Cluster
+#'   2, \eqn{\text{N}(5, 1)} for Cluster 3, and \eqn{\text{N}(10, 1)} for
+#'   Cluster 4, while noise features were generated from \eqn{\text{N}(0, 1)}.
+#'   For data view 3 (binary), relevant features were generated from the
+#'   following Bernoulli distributions: \eqn{\text{Bernoulli}(0.05)} for Cluster
+#'   1,    \eqn{\text{Bernoulli}(0.2)} for Cluster 2,
+#'   \eqn{\text{Bernoulli}(0.4)} for Cluster 3, and \eqn{\text{Bernoulli}(0.6)}
+#'   for Cluster 4, while noise features were generated from
+#'   \eqn{\text{Bernoulli}(0.1)}. For data view 4 (count), relevant features
 #'   were generated from the following Poisson distributions:
-#'   \eqn{\text{Poisson}(50)} for Cluster 1, \eqn{\text{Poisson}(35)} for Cluster 2,
-#'   \eqn{\text{Poisson}(20)} for Cluster 3, and \eqn{\text{Poisson}(10)} for Cluster 4,
-#'   while noise features were generated from \eqn{\text{Poisson}(2)}.
+#'   \eqn{\text{Poisson}(50)} for Cluster 1, \eqn{\text{Poisson}(35)} for
+#'   Cluster 2, \eqn{\text{Poisson}(20)} for Cluster 3, and
+#'   \eqn{\text{Poisson}(10)} for Cluster 4, while noise features were generated
+#'   from \eqn{\text{Poisson}(2)}.
 #'
 #' @docType data
 #' @keywords datasets
@@ -47,25 +49,27 @@ NULL
 #'   (TCGA, 2013). The Acute Myeloid Leukemia (laml_tcga) datasets were download
 #'   using the cBioPortal for Cancer Genomics tool (Cerami et al., 2012; Gao et
 #'   al., 2013). The 170 samples with gene expression data and mutation data
-#'   were included.
+#'   were included. Only a subset of the genes was selected,
+#'   as desribed below. To access the data containing all the genes, please
+#'   visit: https://github.com/AbdalkarimA/iClusterVB
 #'
 #' @docType data
 #' @name laml
-#' @aliases laml.cli laml.exp laml.mut gene_symbols_500
+#' @aliases laml.cli laml.exp laml.mut
 #' @usage data(laml)
-#' @return Within the data file, there is: \item{\code{laml.cli}:}{ A
-#'   dataframe of clinical information for the 170 samples.}
+#' @return Within the data file, there is:
+#'   \item{\code{laml.cli}:}{ A dataframe
+#'   of clinical information for the 170 samples.}
 #'   \item{\code{laml.exp}:}{ A
-#'   matrix of 170 samples and the gene expression values of 20495 genes.}
-#'   \item{\code{laml.mut}:}{ A
-#'   matrix of 170 samples and the mutation status of 1522 genes.
-#'   1 indicates the presence of mutation, and 0 indicated the
-#'   absence of mutation.}
-#'   \item{\code{gene_symbols_500}:}{ A character vector of 500 gene names
+#'   matrix of 170 samples and the gene expression values of the 500 genes
 #'   chosen by Zainul Abidin and Westhead (2016) based on having the  highest ranked-based
 #'   coefficients of variation and standard deviation across the samples.
 #'   Some names may have been updated or corrected from the
 #'   supplementary material.}
+#'   \item{\code{laml.mut}:}{ A
+#'   matrix of 170 samples and the mutation status of 156 genes that had >=2
+#'   mutations. 1 indicates the presence of mutation, and 0 indicates the
+#'   absence of mutation.}
 #'
 #'
 #' @references Cancer Genome Atlas Research Network, Ley, T. J., Miller, C.,
