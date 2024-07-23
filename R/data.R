@@ -53,7 +53,7 @@ NULL
 #' @name laml
 #' @aliases laml.cli laml.exp laml.mut gene_symbols_500
 #' @usage data(laml)
-#' @return Within the data file, there is: \itemize{\item{\code{laml.cli}:}{ A
+#' @return Within the data file, there is: \item{\code{laml.cli}:}{ A
 #'   dataframe of clinical information for the 170 samples.}
 #'   \item{\code{laml.exp}:}{ A
 #'   matrix of 170 samples and the gene expression values of 20495 genes.}
@@ -65,7 +65,7 @@ NULL
 #'   chosen by Zainul Abidin and Westhead (2016) based on having the  highest ranked-based
 #'   coefficients of variation and standard deviation across the samples.
 #'   Some names may have been updated or corrected from the
-#'   supplementary material}}
+#'   supplementary material}
 #'
 #'
 #' @references Cancer Genome Atlas Research Network, Ley, T. J., Miller, C.,

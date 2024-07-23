@@ -12,8 +12,9 @@
 #'
 #'
 #' @param mydata A list of length R, where R is the number of datasets,
-#'   containing the input data. \itemize{\item{Note: For \bold{categorical} data,
-#'   \code{0}'s must be re-coded to another, non-\code{0} value.}}
+#'   containing the input data.
+#'    * Note: For \bold{categorical} data, \code{0}'s must be re-coded to
+#'    another, non-\code{0} value.
 #' @param dist A vector of length R specifying the type of data or distribution.
 #'   Options include: 'gaussian' (for continuous data), 'multinomial' (for
 #'   binary or categorical data), and 'poisson' (for count data).
@@ -39,8 +40,8 @@
 #'   probabilities. The default is NULL. If not NULL, it will override the
 #'   initial values setting for this parameter. If VS_method = 1, initial_omega
 #'   is a list of length R, with each element being an array with dimensions
-#'   {dim=c(N, p[[r]])}. Here, N is the sample size and p[[r]] is the number of
-#'   variables for dataset r, where r = 1, ..., R.
+#'   \{dim=c(N, p\[\[r\]\])\}. Here, N is the sample size and p\[\[r\]\] is the
+#'   number of variables for dataset r, where r = 1, ..., R.
 #' @param input_hyper_parameters A list of the initial hyper-parameters of the
 #'   prior distributions for the model. The default is NULL, which assigns
 #'   alpha_00 = 0.001, mu_00 = 0, s2_00 = 100, a_00 = 1, b_00 = 1,kappa_00 = 1,
@@ -68,18 +69,18 @@
 #' @return The \code{iClusterVB} function creates an object (list) of class
 #'   \code{iClusterVB}. Relevant outputs include:
 #'
-#' \itemize{
-#'  \item{\code{elbo}:}{ The evidence lower bound for each iteration.}
-#'  \item{\code{cluster}:}{ The cluster assigned to each individual.}
-#'  \item{\code{initial_values}:}{ A list of the initial values.}
-#'  \item{\code{hyper_parameters}:}{ A list of the hyper-parameters.}
-#'  \item{\code{model_parameters}:}{ A list of the model parameters after the algorithm is run.
-#'    \itemize{
-#'      \item{Of particular interest is \code{rho}, a list of the posterior
-#'            inclusion probabilities for the features in each of the data views.
-#'            This is probability of including a certain predictor in the model, given the observations.
-#'            This is only available if \code{VS_method = 1}.}}}
-#' }
+#'
+#'   \item{\code{elbo}:}{ The evidence lower bound for each iteration.}
+#'   \item{\code{cluster}:}{ The cluster assigned to each individual.}
+#'   \item{\code{initial_values}:}{ A list of the initial values.}
+#'   \item{\code{hyper_parameters}:}{ A list of the hyper-parameters.}
+#'  \item{\code{model_parameters}:}{A list of the model parameters after the
+#'  algorithm is run.}
+#'    - Of particular interest is \code{rho}, a list of the posterior
+#'   inclusion probabilities for the features in each of the data views. This is
+#'   the probability of including a certain predictor in the model, given the
+#'   observations. This is only available if \code{VS_method = 1}.
+#'
 #'
 #' @examples
 #' \dontrun{
@@ -118,7 +119,7 @@
 #' @rawNamespace import(Rcpp, except = registerPlugin)
 #' @export iClusterVB
 #' @useDynLib iClusterVB, .registration=TRUE
-#'
+#' @md
 #'
 
 
@@ -131,7 +132,7 @@ iClusterVB <- function(
     initial_cluster = NULL, # initial cluster membership, if it is not NULL, it will overwrite the previous initial values setting for this parameter
     initial_vs_prob = NULL, # initial variable selection probability, a scalar
     initial_fit = NULL, # initial values based on previously fitted iClusterVB model (an iClusterVB object)
-    initial_omega = NULL, # constomized initial values for variable inclusion probabilities, if it is not NULL, it will overwrite the previous initial values setting for this parameter
+    initial_omega = NULL, # customized initial values for variable inclusion probabilities, if it is not NULL, it will overwrite the previous initial values setting for this parameter
     # if VS_method  = 1, initial_omega is a list with length R, each element of the list is an array with dim=c(N,p[[r]])), r = 1,...,R
     input_hyper_parameters = NULL, # input hyper-parameters of the prior distributions for the model
     max_iter = 200, # maximum iteration of the VB algorithm
@@ -343,7 +344,10 @@ iClusterVB <- function(
     #----------------------------------------------------------------------------#
     if (initial_method == "kproto") {
       # install.packages("clustMixType")
-      fit.kproto <- kproto(x = data.frame(mydata_combine), k = K, lambda = rep(1, p_total))
+      capture.output(fit.kproto <- kproto(x = data.frame(mydata_combine), k = K,
+                                          lambda = rep(1, p_total),
+                                          type = "gower"),
+                     file = R.utils::nullfile())
       zz <- initial_cluster <- as.numeric(fit.kproto$cluster)
       table(fit.kproto$cluster)
     }

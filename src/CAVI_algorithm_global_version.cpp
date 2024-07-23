@@ -278,7 +278,7 @@ Rcpp::List CAVI_algorithm_global(Rcpp:: List mydata,               // List of R 
               arma::rowvec mu_0_mat = mu_0(indx);
 
               arma::mat sigma2_mat = sigma2(indx);
-              arma::mat sigma2_mat_k = sigma2_mat.row(k);
+                arma::mat sigma2_mat_k = sigma2_mat.row(k);
 
               arma::mat mu_tilde_mat = mu_tilde(indx);// mean of mu
                 arma::mat mu_tilde_mat_k = mu_tilde_mat.row(k);
@@ -582,7 +582,7 @@ Rcpp::List CAVI_algorithm_global(Rcpp:: List mydata,               // List of R 
     }
     // Check a condition to break out of the loop
     if (early_stop == 1 && iter > 1){
-      if (abs(elbo(iter-1) - elbo(iter-2)) < convergence_threshold) {
+      if (fabs(elbo(iter-1) - elbo(iter-2)) < convergence_threshold) {
         Rprintf("Converged. Stopping at iteration %i \n", iter);
         break;
       }

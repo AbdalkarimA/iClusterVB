@@ -12,7 +12,7 @@
 data(laml)
 }
 \value{
-Within the data file, there is: \itemize{\item{\code{laml.cli}:}{ A
+Within the data file, there is: \item{\code{laml.cli}:}{ A
   dataframe of clinical information for the 170 samples.}
   \item{\code{laml.exp}:}{ A
   matrix of 170 samples and the gene expression values of 20495 genes.}
@@ -24,7 +24,7 @@ Within the data file, there is: \itemize{\item{\code{laml.cli}:}{ A
   chosen by Zainul Abidin and Westhead (2016) based on having the  highest ranked-based
   coefficients of variation and standard deviation across the samples.
   Some names may have been updated or corrected from the
-  supplementary material}}
+  supplementary material}
 }
 \description{
 This is a subset of the LAML (Acute Myeloid Leukemia) data

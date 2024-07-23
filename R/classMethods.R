@@ -64,11 +64,11 @@ summary.iClusterVB <- function(object, rho = 0.5, ...) {
 
 #' Generic plot method for `iClusterVB` objects
 #'
-#' @param fit A fitted iClusterVB object.
+#' @param x A fitted iClusterVB object.
 #' @param ... Potential further arguments (unused)
 #'
-#' @return Returns an ELBO plot, a barplot of cluster proportions, and heatmaps
-#'   for each data view.
+#' @return Returns an evidence lower bound (ELBO) plot and a barplot of cluster
+#'   percentages.
 #'
 #'
 #' @export
@@ -77,7 +77,11 @@ summary.iClusterVB <- function(object, rho = 0.5, ...) {
 #' \dontrun{plot(fit_iClusterVB)}
 
 
-plot.iClusterVB <- function(fit, ...) {
+plot.iClusterVB <- function(x, ...) {
+
+  fit <- x
+
+  rm(x)
 
   plot(x = 1:fit$iter,
        y = fit$elbo[1:1:fit$iter],

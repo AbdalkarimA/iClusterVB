@@ -469,7 +469,7 @@ Rcpp::List CAVI_algorithm_standard(Rcpp:: List mydata,               // List of 
     }
     // Check a condition to break out of the loop
     if (early_stop == 1 && iter > 1){
-      if (abs(elbo(iter-1) - elbo(iter-2)) < convergence_threshold) { 
+      if (fabs(elbo(iter-1) - elbo(iter-2)) < convergence_threshold) { 
         Rprintf("Converged. Stopping at iteration %i \n", iter); 
         break;   
       }

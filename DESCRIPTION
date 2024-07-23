@@ -14,9 +14,10 @@ Description: The iClusterVB package in R provides a variational Bayesian approac
   facilitating the analysis of high-dimensional datasets with applications in fields like cancer research, genomics, and more.
 Version: 0.1.0
 Maintainer: Abdalkarim Alnajjar <abdalkarim.alnajjar@queensu.ca>
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+LazyDataCompression: xz
 URL: https://github.com/AbdalkarimA/iClusterVB
 BugReports: https://github.com/AbdalkarimA/iClusterVB/issues
 Imports: 
@@ -42,4 +43,5 @@ Suggests:
 LinkingTo: 
     Rcpp, 
     RcppArmadillo
-RoxygenNote: 7.3.1
+Depends: R (>= 2.10)
+RoxygenNote: 7.3.2

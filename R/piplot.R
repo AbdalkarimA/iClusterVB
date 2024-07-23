@@ -13,7 +13,10 @@
 #' @return Returns a probability inclusion plot or plots.
 #' @examples
 #' \dontrun{
-#' piplot(fit_iClusterVB, ylab = "Probability", title = NULL, align = "hv", nrow = 2, ncol = 2)
+#' piplot(fit_iClusterVB,
+#'   ylab = "Probability", title = NULL, align = "hv",
+#'   nrow = 2, ncol = 2
+#' )
 #' piplot(fit_iClusterVB)
 #' }
 #' @import ggplot2 cowplot
@@ -21,8 +24,10 @@
 #' @useDynLib iClusterVB, .registration=TRUE
 
 
-piplot <- function(fit, plot_grid = TRUE, ylab = "Probability of Inclusion", title = NULL, ...) {
-
+piplot <- function(fit,
+                   plot_grid = TRUE,
+                   ylab = "Probability of Inclusion",
+                   title = NULL, ...) {
   for (i in 1:length(fit$model_parameters$rho)) {
     assign(paste("dat", i, sep = ""), data.frame(
       varid = 1:length(fit$model_parameters$rho[[i]]),
@@ -41,8 +46,10 @@ piplot <- function(fit, plot_grid = TRUE, ylab = "Probability of Inclusion", tit
   }
 
   for (i in 1:length(fit$model_parameters$rho)) {
-    gp_rho[[i]] <- ggplot2::ggplot(data = get(paste("dat", i, sep = "")),
-                                   mapping = ggplot2::aes(x = reorder(varid, rho), y = rho, fill = rho)) +
+    gp_rho[[i]] <- ggplot2::ggplot(
+      data = get(paste("dat", i, sep = "")),
+      mapping = ggplot2::aes(x = reorder(varid, rho), y = rho, fill = rho)
+    ) +
       ggplot2::geom_bar(stat = "identity") +
       ggplot2::ggtitle(ifelse(length(title) > 1, title[i], title)) +
       ggplot2::ylim(c(0, 1)) +
@@ -84,3 +91,5 @@ piplot <- function(fit, plot_grid = TRUE, ylab = "Probability of Inclusion", tit
     gp_rho[1:length(fit$model_parameters$rho)]
   }
 }
+
+utils::globalVariables(c("rho", "varid"))
