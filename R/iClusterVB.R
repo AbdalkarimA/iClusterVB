@@ -2,19 +2,15 @@
 #'   Variational Bayesian Inference
 #'
 #' @description `iClusterVB` offers a novel, fast, and integrative approach to
-#'   clustering high-dimensional, mixed-type, and multi-view data, addressing
-#'   the computational complexities and challenges of modern biomedical studies.
-#'   By employing variational Bayesian inference, iClusterVB facilitates
-#'   effective feature selection and identification of disease subtypes,
-#'   enhancing clinical decision-making. Leverage iClusterVB to advance your
-#'   data analysis and uncover meaningful insights in heterogeneous disease
-#'   research.
-#'
+#'   clustering high-dimensional, mixed-type, and multi-view data. By employing
+#'   variational Bayesian inference, iClusterVB facilitates effective feature
+#'   selection and identification of disease subtypes, enhancing clinical
+#'   decision-making.
 #'
 #' @param mydata A list of length R, where R is the number of datasets,
 #'   containing the input data.
 #'    * Note: For \bold{categorical} data, \code{0}'s must be re-coded to
-#'    another, non-\code{0} value.
+#'   another, non-\code{0} value.
 #' @param dist A vector of length R specifying the type of data or distribution.
 #'   Options include: 'gaussian' (for continuous data), 'multinomial' (for
 #'   binary or categorical data), and 'poisson' (for count data).
@@ -26,22 +22,22 @@
 #'   Options include: "VarSelLCM" (default), "random", "kproto" (k-prototypes),
 #'   "kmeans" (continuous data only), "mclust" (continuous data only), or "lca"
 #'   (poLCA, categorical data only).
-#' @param VS_method The variable selection method. Options are 0 for clustering
-#'   without variable selection (default) and 1 for clustering with variable
-#'   selection.
+#' @param VS_method The variable/feature selection method. Options are 0 for
+#'   clustering without variable/feature selection (default) and 1 for
+#'   clustering with variable/feature selection.
 #' @param initial_cluster The initial cluster membership. The default is NULL,
 #'   which uses initial_method for initial cluster allocation. If not NULL, it
 #'   will override the initial values setting for this parameter.
-#' @param initial_vs_prob The initial variable selection probability, a scalar.
-#'   The default is NULL, which assigns a value of 0.5.
+#' @param initial_vs_prob The initial variable/feature selection probability, a
+#'   scalar. The default is NULL, which assigns a value of 0.5.
 #' @param initial_fit Initial values based on a previously fitted iClusterVB
 #'   model (an iClusterVB object). The default is NULL.
-#' @param initial_omega Customized initial values for variable inclusion
+#' @param initial_omega Customized initial values for feature inclusion
 #'   probabilities. The default is NULL. If not NULL, it will override the
 #'   initial values setting for this parameter. If VS_method = 1, initial_omega
 #'   is a list of length R, with each element being an array with dimensions
 #'   \{dim=c(N, p\[\[r\]\])\}. Here, N is the sample size and p\[\[r\]\] is the
-#'   number of variables for dataset r, where r = 1, ..., R.
+#'   number of features for dataset r, where r = 1, ..., R.
 #' @param input_hyper_parameters A list of the initial hyper-parameters of the
 #'   prior distributions for the model. The default is NULL, which assigns
 #'   alpha_00 = 0.001, mu_00 = 0, s2_00 = 100, a_00 = 1, b_00 = 1,kappa_00 = 1,

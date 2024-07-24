@@ -10,8 +10,8 @@
 \item{object}{A fitted iClusterVB object.}
 
 \item{rho}{The minimum posterior inclusion probability of interest to count
-the number of variables that are >= \code{rho}. Default is 0.5. Only works for
-VS_method = 1.}
+the number of features that are >= \code{rho}. Default is 0.5. Only works
+for VS_method = 1.}
 
 \item{...}{Potential further arguments}
 }

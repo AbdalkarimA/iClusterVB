@@ -44,26 +44,26 @@ Options include: "VarSelLCM" (default), "random", "kproto" (k-prototypes),
 "kmeans" (continuous data only), "mclust" (continuous data only), or "lca"
 (poLCA, categorical data only).}
 
-\item{VS_method}{The variable selection method. Options are 0 for clustering
-without variable selection (default) and 1 for clustering with variable
-selection.}
+\item{VS_method}{The variable/feature selection method. Options are 0 for
+clustering without variable/feature selection (default) and 1 for
+clustering with variable/feature selection.}
 
 \item{initial_cluster}{The initial cluster membership. The default is NULL,
 which uses initial_method for initial cluster allocation. If not NULL, it
 will override the initial values setting for this parameter.}
 
-\item{initial_vs_prob}{The initial variable selection probability, a scalar.
-The default is NULL, which assigns a value of 0.5.}
+\item{initial_vs_prob}{The initial variable/feature selection probability, a
+scalar. The default is NULL, which assigns a value of 0.5.}
 
 \item{initial_fit}{Initial values based on a previously fitted iClusterVB
 model (an iClusterVB object). The default is NULL.}
 
-\item{initial_omega}{Customized initial values for variable inclusion
+\item{initial_omega}{Customized initial values for feature inclusion
 probabilities. The default is NULL. If not NULL, it will override the
 initial values setting for this parameter. If VS_method = 1, initial_omega
 is a list of length R, with each element being an array with dimensions
 \{dim=c(N, p[[r]])\}. Here, N is the sample size and p[[r]] is the
-number of variables for dataset r, where r = 1, ..., R.}
+number of features for dataset r, where r = 1, ..., R.}
 
 \item{input_hyper_parameters}{A list of the initial hyper-parameters of the
 prior distributions for the model. The default is NULL, which assigns
@@ -102,13 +102,10 @@ observations. This is only available if \code{VS_method = 1}.
 }
 \description{
 \code{iClusterVB} offers a novel, fast, and integrative approach to
-clustering high-dimensional, mixed-type, and multi-view data, addressing
-the computational complexities and challenges of modern biomedical studies.
-By employing variational Bayesian inference, iClusterVB facilitates
-effective feature selection and identification of disease subtypes,
-enhancing clinical decision-making. Leverage iClusterVB to advance your
-data analysis and uncover meaningful insights in heterogeneous disease
-research.
+clustering high-dimensional, mixed-type, and multi-view data. By employing
+variational Bayesian inference, iClusterVB facilitates effective feature
+selection and identification of disease subtypes, enhancing clinical
+decision-making.
 }
 \note{
 If any of the data views are "gaussian", please include them

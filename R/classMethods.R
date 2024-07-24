@@ -2,8 +2,8 @@
 #'
 #' @param object A fitted iClusterVB object.
 #' @param rho The minimum posterior inclusion probability of interest to count
-#'   the number of variables that are >= \code{rho}. Default is 0.5. Only works for
-#'   VS_method = 1.
+#'   the number of features that are >= \code{rho}. Default is 0.5. Only works
+#'   for VS_method = 1.
 #' @param ... Potential further arguments
 #' @return Returns a summary list for an `agnes` object.
 #' @examples
@@ -90,6 +90,8 @@ plot.iClusterVB <- function(x, ...) {
        xlab = "Iteration",
        ylab = "ELBO")
 
+  par(ask = TRUE)
+
   bar_plot_y <- round(fit[["model_parameters"]][["ppi"]][round(fit[["model_parameters"]][["ppi"]], digits = 4) > 0] * 100, digits = 2)
 
   bar_plot <-  barplot(bar_plot_y,
@@ -104,6 +106,8 @@ plot.iClusterVB <- function(x, ...) {
 
   text(x = bar_plot, y = bar_plot_y + 5, labels = paste(bar_plot_y, "%", sep = ""))
   text(x = bar_plot, y = -5, labels = paste("Cluster", sort(unique(fit$cluster)), sep = " "))
+
+  par(ask = FALSE)
 }
 
 

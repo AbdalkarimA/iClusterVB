@@ -1,11 +1,13 @@
 #' Generates a heat map based on an iClusterVB object
 #'
 #' @param fit A fitted iClusterVB object.
-#' @param rho The minimum probability of inclusion for variables shown on the
-#'   heatmap. Default is 0. Only useful for VS_method = 1.
+#' @param rho The minimum probability of inclusion for features shown on the
+#'   heatmap. Default is 0.5. 0 would show all features. Only useful for
+#'   VS_method = 1.
 #' @param title A character vector or a single value. Title of the heat map. The
 #'   default is "View 1 - Distribution 1", ..., "View R - Distribution R".
-#' @param cols A vector of colors to use for the clusters. The default is a random selection of colors.
+#' @param cols A vector of colors to use for the clusters. The default is a
+#'   random selection of colors.
 #' @param ... Additional arguments to be passed down to
 #'   \code{\link[pheatmap]{pheatmap}}
 #'
@@ -21,7 +23,7 @@
 #' @useDynLib iClusterVB, .registration=TRUE
 
 
-chmap <- function(fit, rho = 0, cols = NULL, title = NULL, ...) {
+chmap <- function(fit, rho = 0.5, cols = NULL, title = NULL, ...) {
 
   if (is.null(cols)) {
     cols <- colors()[sample(1:600, size = length(unique(fit$cluster)))]
