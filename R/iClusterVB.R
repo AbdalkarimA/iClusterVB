@@ -109,7 +109,7 @@
 #' }
 #' @import mvtnorm MCMCpack inline compiler VarSelLCM cluster clustMixType poLCA
 #' @importFrom grDevices colorRampPalette colors devAskNewPage topo.colors
-#' @importFrom graphics abline axis barplot text
+#' @importFrom graphics abline axis barplot text par
 #' @importFrom stats aggregate kmeans model.matrix reorder setNames var
 #' @importFrom utils capture.output
 #' @importFrom R.utils nullfile
