@@ -117,32 +117,37 @@ distribution vector \code{dist}. For example, \code{dist <-
 \code{dist <- c("gaussian", "poisson", "gaussian", "multinomial")}
 }
 \examples{
-\dontrun{
-  # sim_data comes with the iClusterVB package.
-  dat1 <- list(gauss_1 = sim_data$continuous1_data,
-               gauss_2 = sim_data$continuous2_data,
-               poisson_1 = sim_data$count_data,
-               multinomial_1 = sim_data$binary_data)
+# sim_data comes with the iClusterVB package.
+dat1 <- list(
+  gauss_1 = sim_data$continuous1_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
+  gauss_2 = sim_data$continuous2_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
+  poisson_1 = sim_data$count_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
+  multinomial_1 = sim_data$binary_data[c(1:20, 61:80, 121:140, 181:200), 1:75]
+)
 
-  # We re-code `0`s to `2`s
+# We re-code `0`s to `2`s
 
-  dat1$multinomial_1[dat1$multinomial_1 == 0] <- 2
+dat1$multinomial_1[dat1$multinomial_1 == 0] <- 2
 
-  dist <- c("gaussian","gaussian",
-            "poisson", "multinomial")
+dist <- c(
+  "gaussian", "gaussian",
+  "poisson", "multinomial"
+)
 
-  # Note: `max_iter` is the time-intensive step.
-  # For the purpose of testing the code, use a small value (e.g. 10).
-  # For more accurate results, use a larger value (e.g. 200).
+# Note: `max_iter` is a time-intensive step.
+# For the purpose of testing the code, use a small value (e.g. 10).
+# For more accurate results, use a larger value (e.g. 200).
 
-  fit_iClusterVB <- iClusterVB(mydata = dat1,
-                               dist = dist,
-                               K = 8,
-                               initial_method = "VarSelLCM",
-                               VS_method = 1,
-                               max_iter = 200)
+fit_iClusterVB <- iClusterVB(
+  mydata = dat1,
+  dist = dist,
+  K = 4,
+  initial_method = "VarSelLCM",
+  VS_method = 1,
+  max_iter = 50
+)
 
-  # To get a summary of the model, we can use the `summary` function
-  summary(fit_iClusterVB)
-}
+# We can obtain a summary using the summary() function
+summary(fit_iClusterVB)
+
 }

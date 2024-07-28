@@ -34,11 +34,33 @@ Returns a probability inclusion plot or plots.
 Generates a probability inclusion plot based on an iClusterVB object
 }
 \examples{
-\dontrun{
-piplot(fit_iClusterVB,
-  ylab = "Probability", title = NULL, align = "hv",
-  nrow = 2, ncol = 2
+# Setting up the data
+dat1 <- list(
+  gauss_1 = sim_data$continuous1_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
+  gauss_2 = sim_data$continuous2_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
+  poisson_1 = sim_data$count_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
+  multinomial_1 = sim_data$binary_data[c(1:20, 61:80, 121:140, 181:200), 1:75]
 )
+
+# Recoding `0`s to `2`s
+dat1$multinomial_1[dat1$multinomial_1 == 0] <- 2
+
+dist <- c(
+  "gaussian", "gaussian",
+  "poisson", "multinomial"
+)
+
+fit_iClusterVB <- iClusterVB(
+  mydata = dat1,
+  dist = dist,
+  K = 4,
+  initial_method = "VarSelLCM",
+  VS_method = 1,
+  max_iter = 25
+)
+
 piplot(fit_iClusterVB)
-}
+
+# Plotting seperately
+piplot(fit_iClusterVB, plot_grid = FALSE)
 }

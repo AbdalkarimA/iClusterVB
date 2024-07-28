@@ -79,34 +79,39 @@
 #'
 #'
 #' @examples
-#' \dontrun{
-#'   # sim_data comes with the iClusterVB package.
-#'   dat1 <- list(gauss_1 = sim_data$continuous1_data,
-#'                gauss_2 = sim_data$continuous2_data,
-#'                poisson_1 = sim_data$count_data,
-#'                multinomial_1 = sim_data$binary_data)
+#' # sim_data comes with the iClusterVB package.
+#' dat1 <- list(
+#'   gauss_1 = sim_data$continuous1_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
+#'   gauss_2 = sim_data$continuous2_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
+#'   poisson_1 = sim_data$count_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
+#'   multinomial_1 = sim_data$binary_data[c(1:20, 61:80, 121:140, 181:200), 1:75]
+#' )
 #'
-#'   # We re-code `0`s to `2`s
+#' # We re-code `0`s to `2`s
 #'
-#'   dat1$multinomial_1[dat1$multinomial_1 == 0] <- 2
+#' dat1$multinomial_1[dat1$multinomial_1 == 0] <- 2
 #'
-#'   dist <- c("gaussian","gaussian",
-#'             "poisson", "multinomial")
+#' dist <- c(
+#'   "gaussian", "gaussian",
+#'   "poisson", "multinomial"
+#' )
 #'
-#'   # Note: `max_iter` is the time-intensive step.
-#'   # For the purpose of testing the code, use a small value (e.g. 10).
-#'   # For more accurate results, use a larger value (e.g. 200).
+#' # Note: `max_iter` is a time-intensive step.
+#' # For the purpose of testing the code, use a small value (e.g. 10).
+#' # For more accurate results, use a larger value (e.g. 200).
 #'
-#'   fit_iClusterVB <- iClusterVB(mydata = dat1,
-#'                                dist = dist,
-#'                                K = 8,
-#'                                initial_method = "VarSelLCM",
-#'                                VS_method = 1,
-#'                                max_iter = 200)
+#' fit_iClusterVB <- iClusterVB(
+#'   mydata = dat1,
+#'   dist = dist,
+#'   K = 4,
+#'   initial_method = "VarSelLCM",
+#'   VS_method = 1,
+#'   max_iter = 50
+#' )
 #'
-#'   # To get a summary of the model, we can use the `summary` function
-#'   summary(fit_iClusterVB)
-#' }
+#' # We can obtain a summary using the summary() function
+#' summary(fit_iClusterVB)
+#'
 #' @import mvtnorm MCMCpack inline compiler VarSelLCM cluster clustMixType poLCA
 #' @importFrom grDevices colorRampPalette colors devAskNewPage topo.colors
 #' @importFrom graphics abline axis barplot text par
@@ -155,9 +160,9 @@ iClusterVB <- function(
     convergence_threshold <- 1e-4
   }
 
-  cat(paste(rep("-", 60), sep = "", collapse = ""), "\n")
-  cat("Pre-processing and initializing the model", "\n")
-  cat(paste(rep("-", 60), sep = "", collapse = ""), "\n")
+  message(paste(rep("-", 60), sep = "", collapse = ""), "\n")
+  message("Pre-processing and initializing the model", "\n")
+  message(paste(rep("-", 60), sep = "", collapse = ""), "\n")
 
   # evaluating if there is missing data
   if (sum(is.na(do.call(cbind, mydata))) > 0) {
@@ -342,10 +347,14 @@ iClusterVB <- function(
     #----------------------------------------------------------------------------#
     if (initial_method == "kproto") {
       # install.packages("clustMixType")
-      capture.output(fit.kproto <- kproto(x = data.frame(mydata_combine), k = K,
-                                          lambda = rep(1, p_total),
-                                          type = "gower"),
-                     file = R.utils::nullfile())
+      capture.output(
+        fit.kproto <- kproto(
+          x = data.frame(mydata_combine), k = K,
+          lambda = rep(1, p_total),
+          type = "gower"
+        ),
+        file = R.utils::nullfile()
+      )
       zz <- initial_cluster <- as.numeric(fit.kproto$cluster)
       table(fit.kproto$cluster)
     }
@@ -438,7 +447,7 @@ iClusterVB <- function(
   v_tilde <- list() # parameter for poisson distribution
   #----------------------------------------------------------------------------#
 
-  if(length(zz) != N) {
+  if (length(zz) != N) {
     stop("Please use a different initialization method or start with a lower `K` \n")
   }
 
@@ -613,9 +622,9 @@ iClusterVB <- function(
   # mydata <- lapply(mydata, function(y) if(is.factor(y)) as.matrix(as.numeric(as.character(y))) else y)
   # str(mydata)
 
-  cat(paste(rep("-", 60), sep = "", collapse = ""), "\n")
-  cat("Running the CAVI algorithm", "\n")
-  cat(paste(rep("-", 60), sep = "", collapse = ""), "\n")
+  message(paste(rep("-", 60), sep = "", collapse = ""), "\n")
+  message("Running the CAVI algorithm", "\n")
+  message(paste(rep("-", 60), sep = "", collapse = ""), "\n")
 
   #------------------------------------------------------------------------------------#
   # CAVI algorithm parameters

@@ -22,7 +22,32 @@ Returns a summary list for an `agnes` object.
 Generic summary method for `iClusterVB` objects
 }
 \examples{
+# Setting up the data
+dat1 <- list(
+  gauss_1 = sim_data$continuous1_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
+  gauss_2 = sim_data$continuous2_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
+  poisson_1 = sim_data$count_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
+  multinomial_1 = sim_data$binary_data[c(1:20, 61:80, 121:140, 181:200), 1:75]
+)
+
+# Recoding `0`s to `2`s
+dat1$multinomial_1[dat1$multinomial_1 == 0] <- 2
+
+dist <- c(
+  "gaussian", "gaussian",
+  "poisson", "multinomial"
+)
+
+fit_iClusterVB <- iClusterVB(
+  mydata = dat1,
+  dist = dist,
+  K = 4,
+  initial_method = "VarSelLCM",
+  VS_method = 1,
+  max_iter = 25
+)
+
 ## S3 method for class 'iClusterVB'
-\dontrun{summary(fit_iClusterVB, rho = 0.5)}
+summary(fit_iClusterVB, rho = 0.75)
 
 }

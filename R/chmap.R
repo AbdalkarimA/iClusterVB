@@ -13,18 +13,48 @@
 #'
 #' @return Returns a heat map for each data view.
 #' @examples
-#' \dontrun{
-#' chmap(fit_iClusterVB, rho = 0.75, title = c("View 1", "View 2"),
-#' cols = c("green", "blue", "purple", "red"))
-#' chmap(fit_iClusterVB)
-#' }
+#' # Setting up the data
+#' dat1 <- list(
+#'   gauss_1 = sim_data$continuous1_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
+#'   gauss_2 = sim_data$continuous2_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
+#'   poisson_1 = sim_data$count_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
+#'   multinomial_1 = sim_data$binary_data[c(1:20, 61:80, 121:140, 181:200), 1:75]
+#' )
+#'
+#' # Recoding `0`s to `2`s
+#' dat1$multinomial_1[dat1$multinomial_1 == 0] <- 2
+#'
+#' dist <- c(
+#'   "gaussian", "gaussian",
+#'   "poisson", "multinomial"
+#' )
+#'
+#' fit_iClusterVB <- iClusterVB(
+#'   mydata = dat1,
+#'   dist = dist,
+#'   K = 4,
+#'   initial_method = "VarSelLCM",
+#'   VS_method = 1,
+#'   max_iter = 25
+#' )
+#'
+#'
+#' # We can set the colors
+#' chmap(fit_iClusterVB, cols = c("red", "blue", "green", "purple"))
+#'
+#' # We can turn off scaling and set titles
+#'
+#' chmap(fit_iClusterVB,
+#'   cols = c("red", "blue", "green", "purple"),
+#'   title = c("Gene Expression", "DNA Methylation", "Copy Number", "Mutation Status"),
+#'   scale = "none"
+#' )
 #' @export chmap
 #' @import pheatmap
 #' @useDynLib iClusterVB, .registration=TRUE
 
 
 chmap <- function(fit, rho = 0.5, cols = NULL, title = NULL, ...) {
-
   if (is.null(cols)) {
     cols <- colors()[sample(1:600, size = length(unique(fit$cluster)))]
   }
@@ -51,36 +81,40 @@ chmap <- function(fit, rho = 0.5, cols = NULL, title = NULL, ...) {
 
 
   if (is.null(fit$model_parameters$rho)) {
-
     dfs <- mapply(function(fit) as.data.frame(t(data.matrix(fit))),
-                  fit = fit$mydata, SIMPLIFY = FALSE)
+      fit = fit$mydata, SIMPLIFY = FALSE
+    )
 
     mat_col <- data.frame(Clusters = paste("Cluster", as.numeric(fit$cluster)))
     rownames(mat_col) <- colnames(dfs[[1]])
 
     dfs <- lapply(X = dfs, FUN = function(dfs) dfs[, order(as.numeric(fit$cluster))])
 
-    plot_list <- mapply(FUN = pheatmap, dfs, main = as.character(title),
-                        MoreArgs = list(annotation_col = mat_col),
-                        ...,
-                        SIMPLIFY = FALSE)
+    plot_list <- mapply(
+      FUN = pheatmap, dfs, main = as.character(title),
+      MoreArgs = list(annotation_col = mat_col),
+      ...,
+      SIMPLIFY = FALSE
+    )
 
     plot_list <- sapply(plot_list, "[", 4)
   } else if (!is.null(fit$model_parameters$rho)) {
-
     names <- lapply(fit$model_parameters$rho, function(fit) which(fit > rho))
 
     dfs <- mapply(function(fit, names) as.data.frame(t(data.matrix(fit[, names]))),
-                  fit = fit$mydata, names = names, SIMPLIFY = FALSE)
+      fit = fit$mydata, names = names, SIMPLIFY = FALSE
+    )
 
     mat_col <- data.frame(Clusters = paste("Cluster", as.numeric(fit$cluster)))
     rownames(mat_col) <- colnames(dfs[[1]])
 
     dfs <- lapply(X = dfs, FUN = function(dfs) dfs[, order(as.numeric(fit$cluster))])
 
-    plot_list <- mapply(FUN = pheatmap, dfs, main = as.character(title),
-                        MoreArgs = list(annotation_col = mat_col),
-                        ..., SIMPLIFY = FALSE)
+    plot_list <- mapply(
+      FUN = pheatmap, dfs, main = as.character(title),
+      MoreArgs = list(annotation_col = mat_col),
+      ..., SIMPLIFY = FALSE
+    )
 
     plot_list <- sapply(plot_list, "[", 4)
   }
