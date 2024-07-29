@@ -1,42 +1,25 @@
 ---
-output: github_document
+title: "Introduction to iClusterVB"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to iClusterVB}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
+  comment = "#>"
 )
 ```
 
 # iClusterVB
 
-<!-- badges: start -->
-[![R-CMD-check](https://github.com/AbdalkarimA/iClusterVB/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AbdalkarimA/iClusterVB/actions/workflows/R-CMD-check.yaml)
-<!-- badges: end -->
 
 iClusterVB allows for fast integrative clustering and feature selection for high dimensional data.
     
 Using a variational Bayes approach, its key features - clustering of mixed-type data, automated determination of the number of clusters, and feature selection in high-dimensional settings - address the limitations of traditional clustering methods while offering an alternative and potentially faster approach than MCMC algorithms, making __iClusterVB__ a valuable tool for contemporary data analysis challenges.
-
-## Installation
-
-You can install iClusterVB from CRAN with:
-
-``` r
-install.packages("iClusterVB")
-```
-
-You can install the development version of iClusterVB from [GitHub](https://github.com/AbdalkarimA/iClusterVB) with:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("AbdalkarimA/iClusterVB")
-```
 
 ## iClusterVB - The Main Function
 

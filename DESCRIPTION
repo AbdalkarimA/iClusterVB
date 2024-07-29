@@ -40,6 +40,8 @@ Imports:
     utils,
     VarSelLCM
 Suggests: 
+    knitr,
+    rmarkdown,
     survival,
     survminer
 LinkingTo: 
@@ -49,3 +51,4 @@ Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
 RoxygenNote: 7.3.2
+VignetteBuilder: knitr

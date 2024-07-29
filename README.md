@@ -20,6 +20,12 @@ a valuable tool for contemporary data analysis challenges.
 
 ## Installation
 
+You can install iClusterVB from CRAN with:
+
+``` r
+install.packages("iClusterVB")
+```
+
 You can install the development version of iClusterVB from
 [GitHub](https://github.com/AbdalkarimA/iClusterVB) with:
 
@@ -190,7 +196,6 @@ fit_iClusterVB <- iClusterVB(
 #> ------------------------------------------------------------
 #> Pre-processing and initializing the model
 #> ------------------------------------------------------------
-#> 
 #> ------------------------------------------------------------
 #> Running the CAVI algorithm
 #> ------------------------------------------------------------
