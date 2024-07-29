@@ -2,7 +2,6 @@
 ^\.Rproj\.user$
 ^sim_data\.rda$
 ^README\.Rmd$
-^README\.md$
 ^README_files$
 ^LICENSE\.md$
 ^laml_full_data$
