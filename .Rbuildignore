@@ -7,3 +7,4 @@
 ^laml_full_data$
 ^\.gitignore$
 ^\.git$
+^\.github$

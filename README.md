@@ -5,6 +5,7 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/AbdalkarimA/iClusterVB/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AbdalkarimA/iClusterVB/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 iClusterVB allows for fast integrative clustering and feature selection
