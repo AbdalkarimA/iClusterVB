@@ -181,10 +181,10 @@ fit_iClusterVB <- iClusterVB(
   mydata = dat1,
   dist = dist,
   K = 8,
-  initial_method = "kproto",
+  initial_method = "VarSelLCM",
   VS_method = 1, # Variable Selection is on
   max_iter = 100,
-  per = 20
+  per = 100
 )
 #> ------------------------------------------------------------
 #> Pre-processing and initializing the model
@@ -193,11 +193,7 @@ fit_iClusterVB <- iClusterVB(
 #> ------------------------------------------------------------
 #> Running the CAVI algorithm
 #> ------------------------------------------------------------
-#> iteration = 20 elbo = -70674227.531156  
-#> iteration = 40 elbo = -63616639.978262  
-#> iteration = 60 elbo = -55236748.725071  
-#> iteration = 80 elbo = -49220663.903095  
-#> iteration = 100 elbo = -44169515.356301
+#> iteration = 100 elbo = -43591384.761314
 ```
 
 ### Comparing to True Cluster Membership
@@ -206,10 +202,10 @@ fit_iClusterVB <- iClusterVB(
 table(fit_iClusterVB$cluster, sim_data$cluster_true)
 #>    
 #>      1  2  3  4
-#>   5  0  0  0 60
+#>   2 60  0  0  0
+#>   4  0 60  0  0
 #>   6  0  0 60  0
-#>   7 60  0  0  0
-#>   8  0 60  0  0
+#>   8  0  0  0 60
 ```
 
 ### Summary of the Model
@@ -224,20 +220,20 @@ summary(fit_iClusterVB)
 #> Number of clusters determined by algorithm: 4
 #> 
 #> Cluster Membership:
-#>  5  6  7  8 
+#>  2  4  6  8 
 #> 60 60 60 60 
 #> 
 #> # of variables above the posterior inclusion probability of 0.5 for View 1 - gaussian
-#> [1] "56 out of a total of 500"
-#> 
-#> # of variables above the posterior inclusion probability of 0.5 for View 2 - gaussian
 #> [1] "58 out of a total of 500"
 #> 
+#> # of variables above the posterior inclusion probability of 0.5 for View 2 - gaussian
+#> [1] "59 out of a total of 500"
+#> 
 #> # of variables above the posterior inclusion probability of 0.5 for View 3 - multinomial
-#> [1] "64 out of a total of 500"
+#> [1] "62 out of a total of 500"
 #> 
 #> # of variables above the posterior inclusion probability of 0.5 for View 4 - poisson
-#> [1] "67 out of a total of 500"
+#> [1] "69 out of a total of 500"
 ```
 
 ### Generic Plots
@@ -268,8 +264,6 @@ list_of_plots <- chmap(fit_iClusterVB, rho = 0,
                "purple", "red"),
       scale = "none")
 ```
-
-<img src="man/figures/README-chmap-1.png" width="100%" /><img src="man/figures/README-chmap-2.png" width="100%" /><img src="man/figures/README-chmap-3.png" width="100%" /><img src="man/figures/README-chmap-4.png" width="100%" />
 
 ``` r
 # The `grid.arrange` function from gridExtra can be used to display all the 

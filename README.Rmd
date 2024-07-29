@@ -172,10 +172,10 @@ fit_iClusterVB <- iClusterVB(
   mydata = dat1,
   dist = dist,
   K = 8,
-  initial_method = "kproto",
+  initial_method = "VarSelLCM",
   VS_method = 1, # Variable Selection is on
   max_iter = 100,
-  per = 20
+  per = 100
 )
 ```
 
@@ -213,7 +213,7 @@ piplot(fit_iClusterVB)
 ### Heat maps to visualize the clusters
 
 
-```{r chmap, echo = TRUE, results = 'hide'}
+```{r chmap, echo = TRUE, fig.show='hide'}
 # The `chmap` function can be used to display heat maps for each data view
 
 list_of_plots <- chmap(fit_iClusterVB, rho = 0,
