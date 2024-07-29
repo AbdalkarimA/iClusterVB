@@ -61,6 +61,4 @@ fit_iClusterVB <- iClusterVB(
 
 piplot(fit_iClusterVB)
 
-# Plotting seperately
-piplot(fit_iClusterVB, plot_grid = FALSE)
 }
