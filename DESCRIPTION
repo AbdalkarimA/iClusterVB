@@ -8,7 +8,7 @@ Authors@R: c(
            comment = c(ORCID = "0009-0008-4439-1214")),
     person("Zihang", "Lu", , "zihang.lu@queensu.ca", role = "aut")
   )
-Author: Abdalkarim Alnajjar [aut, cre]
+Author: Abdalkarim Alnajjar [aut, cre, cph]
     (<https://orcid.org/0009-0008-4439-1214>), Zihang Lu [aut]
 Maintainer: Abdalkarim Alnajjar <abdalkarim.alnajjar@queensu.ca>
 Description: A variational Bayesian approach for fast integrative
