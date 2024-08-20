@@ -54,11 +54,11 @@ fit_iClusterVB <- iClusterVB(
   mydata = dat1,
   dist = dist,
   K = 4,
-  initial_method = "VarSelLCM",
+  initial_cluster= c(rep(1, 20), rep(2, 20), rep(3, 20), rep(4, 20)),
   VS_method = 1,
-  max_iter = 25
+  max_iter = 20
 )
 
-piplot(fit_iClusterVB)
+piplot(fit_iClusterVB, plot_grid = FALSE)
 
 }

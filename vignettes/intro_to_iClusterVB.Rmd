@@ -70,14 +70,14 @@ summary(fit_iClusterVB)
 
 ### Generic Plots
 
-```{r plots, fig.width= 6, fig.height=6}
+```{r plots, fig.width=6, fig.height=6}
 plot(fit_iClusterVB)
 ```
 
 
 ### Probability of Inclusion Plots
 
-```{r piplot, fig.width= 6, fig.height=6}
+```{r piplot, fig.width=6, fig.height=6}
 # The `piplot` function can be used to visualize the probability of inclusion
 
 piplot(fit_iClusterVB)
@@ -87,7 +87,7 @@ piplot(fit_iClusterVB)
 ### Heat maps to visualize the clusters
 
 
-```{r chmap, echo = TRUE, fig.width= 6, fig.height=6}
+```{r chmap, echo = TRUE, fig.width=6, fig.height=6}
 # The `chmap` function can be used to display heat maps for each data view
 
 chmap(fit_iClusterVB, rho = 0,

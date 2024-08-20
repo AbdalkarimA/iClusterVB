@@ -9,10 +9,6 @@ findIndex_numeric <- function(vec, target) {
     .Call(`_iClusterVB_findIndex_numeric`, vec, target)
 }
 
-softmax_log <- function(log_values) {
-    .Call(`_iClusterVB_softmax_log`, log_values)
-}
-
 ddirichlet <- function(x, alpha) {
     .Call(`_iClusterVB_ddirichlet`, x, alpha)
 }

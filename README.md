@@ -248,7 +248,7 @@ summary(fit_iClusterVB)
 plot(fit_iClusterVB)
 ```
 
-<img src="man/figures/README-plots-1.png" width="100%" /><img src="man/figures/README-plots-2.png" width="100%" />
+<img src="man/figures/README-plots-1.png" width="75%" /><img src="man/figures/README-plots-2.png" width="75%" />
 
 ### Probability of Inclusion Plots
 
@@ -258,7 +258,7 @@ plot(fit_iClusterVB)
 piplot(fit_iClusterVB)
 ```
 
-<img src="man/figures/README-piplot-1.png" width="100%" />
+<img src="man/figures/README-piplot-1.png" width="75%" />
 
 ### Heat maps to visualize the clusters
 
@@ -277,4 +277,4 @@ list_of_plots <- chmap(fit_iClusterVB, rho = 0,
 gridExtra::grid.arrange(grobs = list_of_plots, ncol = 2, nrow = 2)
 ```
 
-<img src="man/figures/README-gridExtra-1.png" width="100%" />
+<img src="man/figures/README-gridExtra-1.png" width="75%" />

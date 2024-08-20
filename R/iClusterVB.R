@@ -112,7 +112,7 @@
 #' # We can obtain a summary using the summary() function
 #' summary(fit_iClusterVB)
 #'
-#' @import mvtnorm MCMCpack inline compiler VarSelLCM cluster clustMixType poLCA
+#' @import mvtnorm MCMCpack VarSelLCM cluster clustMixType poLCA
 #' @importFrom grDevices colorRampPalette colors devAskNewPage topo.colors
 #' @importFrom graphics abline axis barplot text par
 #' @importFrom stats aggregate kmeans model.matrix reorder setNames var

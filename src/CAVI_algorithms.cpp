@@ -1,38 +1,37 @@
-// Note: Cpp is case sensitive
-// Note: Cpp begins with 0 not 1
-
 #define ARMA_64BIT_WORD
 
-#include <RcppArmadillo.h>
+// [[Rcpp::depends(RcppArmadillo)]]
+#include "RcppArmadillo.h"
+#include "armadillo"
+#include "chrono"
+#include "numeric"
+#include "vector"
+#include "iostream"
 
-#include <armadillo>
-#include <chrono>
-#include <numeric>
-#include <vector>
-#include <iostream>
-#include <Rcpp.h>
 
 using namespace Rcpp;
 using namespace sugar;
 using namespace arma;
 
-// [[Rcpp::depends(RcppArmadillo)]]
+
 
 // Function to find the index of an element in a character vector
 // [[Rcpp::export]]
 
-arma::mat findIndices_char(Rcpp::CharacterVector vec, const std::string& target) {
+Rcpp::NumericVector findIndices_char(Rcpp::CharacterVector vec, const std::string& target) {
 
   int n = vec.size();
-  arma::mat indices;
+  std::vector<int> indices;  // Use a std::vector to collect indices
 
   for (int i = 0; i < n; ++i) {
-    if (vec(i) == target) {
-      indices.resize(indices.size() + 1);
-      indices(indices.size() - 1) = i ;
+    if (vec[i] == target) {
+      indices.push_back(i);
     }
   }
-  return indices;
+
+  // Convert std::vector<int> to Rcpp::NumericVector
+  Rcpp::NumericVector result(indices.begin(), indices.end());
+  return result;
 }
 
 // Function to find the index of an element in a numeric vector
@@ -50,11 +49,11 @@ int findIndex_numeric(const arma::vec& vec, double target) {
 }
 
 
+
 // Softmax function implemented using Rcpp
-// [[Rcpp::export]]
-arma::mat softmax_log(arma::vec log_values) {
+arma::vec softmax_log(arma::vec log_values) {
   // Scale log values to prevent numerical instability
-  double max_log_value = max(log_values);
+  double max_log_value = arma::max(log_values);
   arma::vec adjusted_values = log_values - max_log_value;
 
   // Exponentiate the adjusted values
@@ -62,7 +61,7 @@ arma::mat softmax_log(arma::vec log_values) {
 
   // Calculate softmax probabilities
   double sum_exp_values = arma::sum(exp_values);
-  arma::mat softmax_probabilities = exp_values / sum_exp_values;
+  arma::vec softmax_probabilities = exp_values / sum_exp_values;
 
   return softmax_probabilities;
 }
@@ -204,6 +203,7 @@ Rcpp::List CAVI_algorithm_standard(Rcpp:: List mydata,               // List of 
       phi.row(i) =   softmax_log(vectorise(log_phi.row(i))).t() ;
     }
 
+
     //--------------------------------------------------------------------------//
     // Update Variational Parameters and Calculate ELBO
     //--------------------------------------------------------------------------//
@@ -238,7 +238,7 @@ Rcpp::List CAVI_algorithm_standard(Rcpp:: List mydata,               // List of 
 
           //---------------------------------------//
             if (dist(r) == "gaussian") {
-              arma:: vec indx_tmp = findIndices_char(dist, "gaussian") ;
+               Rcpp::NumericVector indx_tmp = findIndices_char(dist, "gaussian") ;
               int indx =  findIndex_numeric(indx_tmp, r);
 
               arma::mat mu_mat = mu(indx);
@@ -317,7 +317,7 @@ Rcpp::List CAVI_algorithm_standard(Rcpp:: List mydata,               // List of 
             //---------------------------------------//
 
             if(dist(r) == "multinomial"){
-              arma:: vec indx_tmp = findIndices_char(dist, "multinomial") ;
+               Rcpp::NumericVector indx_tmp = findIndices_char(dist, "multinomial") ;
               int indx =  findIndex_numeric(indx_tmp, r);
 
               int M_r = M(indx);
@@ -373,7 +373,7 @@ Rcpp::List CAVI_algorithm_standard(Rcpp:: List mydata,               // List of 
             }
 
             if(dist(r) == "poisson"){
-              arma:: vec indx_tmp = findIndices_char(dist, "poisson") ;
+               Rcpp::NumericVector indx_tmp = findIndices_char(dist, "poisson") ;
               int indx =  findIndex_numeric(indx_tmp, r);
               arma:: mat u_tilde_mat = u_tilde(indx);
               arma:: mat v_tilde_mat = v_tilde(indx);
@@ -635,7 +635,7 @@ Rcpp::List CAVI_algorithm_global(Rcpp:: List mydata,               // List of R 
     ppi = alpha  / arma::sum(alpha);
 
     for (int i = 0; i < N; ++i) {
-      phi.row(i) =   softmax_log(vectorise(log_phi.row(i))).t() ;
+      phi.row(i) =   softmax_log(vectorise(log_phi.row(i))).t();
     }
 
     //--------------------------------------------------------------------------//
@@ -681,7 +681,7 @@ Rcpp::List CAVI_algorithm_global(Rcpp:: List mydata,               // List of R 
           //---------------------------------------//
             if (dist(r) == "gaussian") {
 
-              arma:: vec indx_tmp = findIndices_char(dist, "gaussian") ;
+               Rcpp::NumericVector indx_tmp = findIndices_char(dist, "gaussian") ;
               int indx =  findIndex_numeric(indx_tmp, r);
 
               arma::mat mu_mat = mu(indx);
@@ -804,7 +804,7 @@ Rcpp::List CAVI_algorithm_global(Rcpp:: List mydata,               // List of R 
             //---------------------------------------//
 
             if(dist(r) == "multinomial"){
-              arma:: vec indx_tmp = findIndices_char(dist, "multinomial") ;
+               Rcpp::NumericVector indx_tmp = findIndices_char(dist, "multinomial") ;
               int indx =  findIndex_numeric(indx_tmp, r);
 
               int M_r = M(indx);
@@ -876,7 +876,7 @@ Rcpp::List CAVI_algorithm_global(Rcpp:: List mydata,               // List of R 
             }
 
              if(dist(r) == "poisson"){
-               arma:: vec indx_tmp = findIndices_char(dist, "poisson") ;
+                Rcpp::NumericVector indx_tmp = findIndices_char(dist, "poisson") ;
                int indx =  findIndex_numeric(indx_tmp, r);
                arma:: mat u_tilde_mat = u_tilde(indx);
                arma:: mat v_tilde_mat = v_tilde(indx);

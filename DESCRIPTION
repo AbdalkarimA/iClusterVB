@@ -19,16 +19,14 @@ License: MIT + file LICENSE
 URL: https://github.com/AbdalkarimA/iClusterVB
 BugReports: https://github.com/AbdalkarimA/iClusterVB/issues
 Depends: 
-    R (>= 3.5.0)
+    R (>= 4.0.0)
 Imports: 
     cluster,
     clustMixType,
-    compiler,
     cowplot,
     ggplot2,
     graphics,
     grDevices,
-    inline,
     mclust,
     MCMCpack,
     mvtnorm,

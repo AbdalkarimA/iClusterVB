@@ -12,7 +12,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
 // findIndices_char
-arma::mat findIndices_char(Rcpp::CharacterVector vec, const std::string& target);
+Rcpp::NumericVector findIndices_char(Rcpp::CharacterVector vec, const std::string& target);
 RcppExport SEXP _iClusterVB_findIndices_char(SEXP vecSEXP, SEXP targetSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -32,17 +32,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const arma::vec& >::type vec(vecSEXP);
     Rcpp::traits::input_parameter< double >::type target(targetSEXP);
     rcpp_result_gen = Rcpp::wrap(findIndex_numeric(vec, target));
-    return rcpp_result_gen;
-END_RCPP
-}
-// softmax_log
-arma::mat softmax_log(arma::vec log_values);
-RcppExport SEXP _iClusterVB_softmax_log(SEXP log_valuesSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type log_values(log_valuesSEXP);
-    rcpp_result_gen = Rcpp::wrap(softmax_log(log_values));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -116,7 +105,6 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_iClusterVB_findIndices_char", (DL_FUNC) &_iClusterVB_findIndices_char, 2},
     {"_iClusterVB_findIndex_numeric", (DL_FUNC) &_iClusterVB_findIndex_numeric, 2},
-    {"_iClusterVB_softmax_log", (DL_FUNC) &_iClusterVB_softmax_log, 1},
     {"_iClusterVB_ddirichlet", (DL_FUNC) &_iClusterVB_ddirichlet, 2},
     {"_iClusterVB_log_ddirichlet", (DL_FUNC) &_iClusterVB_log_ddirichlet, 2},
     {"_iClusterVB_CAVI_algorithm_standard", (DL_FUNC) &_iClusterVB_CAVI_algorithm_standard, 11},
