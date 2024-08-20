@@ -39,10 +39,7 @@
 #' )
 #'
 #'
-#' # We can set the colors
-#' chmap(fit_iClusterVB, cols = c("red", "blue", "green", "purple"))
-#'
-#' # We can turn off scaling and set titles
+#' # We can set the colors, turn off scaling and set titles
 #'
 #' chmap(fit_iClusterVB,
 #'   cols = c("red", "blue", "green", "purple"),

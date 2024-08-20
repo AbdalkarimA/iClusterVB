@@ -11,54 +11,6 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// findIndices_char
-Rcpp::NumericVector findIndices_char(Rcpp::CharacterVector vec, const std::string& target);
-RcppExport SEXP _iClusterVB_findIndices_char(SEXP vecSEXP, SEXP targetSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type vec(vecSEXP);
-    Rcpp::traits::input_parameter< const std::string& >::type target(targetSEXP);
-    rcpp_result_gen = Rcpp::wrap(findIndices_char(vec, target));
-    return rcpp_result_gen;
-END_RCPP
-}
-// findIndex_numeric
-int findIndex_numeric(const arma::vec& vec, double target);
-RcppExport SEXP _iClusterVB_findIndex_numeric(SEXP vecSEXP, SEXP targetSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::vec& >::type vec(vecSEXP);
-    Rcpp::traits::input_parameter< double >::type target(targetSEXP);
-    rcpp_result_gen = Rcpp::wrap(findIndex_numeric(vec, target));
-    return rcpp_result_gen;
-END_RCPP
-}
-// ddirichlet
-double ddirichlet(const arma::vec& x, const arma::vec& alpha);
-RcppExport SEXP _iClusterVB_ddirichlet(SEXP xSEXP, SEXP alphaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::vec& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type alpha(alphaSEXP);
-    rcpp_result_gen = Rcpp::wrap(ddirichlet(x, alpha));
-    return rcpp_result_gen;
-END_RCPP
-}
-// log_ddirichlet
-double log_ddirichlet(const arma::vec& x, const arma::vec& alpha);
-RcppExport SEXP _iClusterVB_log_ddirichlet(SEXP xSEXP, SEXP alphaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::vec& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type alpha(alphaSEXP);
-    rcpp_result_gen = Rcpp::wrap(log_ddirichlet(x, alpha));
-    return rcpp_result_gen;
-END_RCPP
-}
 // CAVI_algorithm_standard
 Rcpp::List CAVI_algorithm_standard(Rcpp:: List mydata, Rcpp:: List data_summary, Rcpp:: List hyper_parameters, Rcpp:: List initial_values, const Rcpp:: CharacterVector dist, const int K, const int max_iter, const int early_stop, const int per, const double epsilon, const double convergence_threshold);
 RcppExport SEXP _iClusterVB_CAVI_algorithm_standard(SEXP mydataSEXP, SEXP data_summarySEXP, SEXP hyper_parametersSEXP, SEXP initial_valuesSEXP, SEXP distSEXP, SEXP KSEXP, SEXP max_iterSEXP, SEXP early_stopSEXP, SEXP perSEXP, SEXP epsilonSEXP, SEXP convergence_thresholdSEXP) {
@@ -103,10 +55,6 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_iClusterVB_findIndices_char", (DL_FUNC) &_iClusterVB_findIndices_char, 2},
-    {"_iClusterVB_findIndex_numeric", (DL_FUNC) &_iClusterVB_findIndex_numeric, 2},
-    {"_iClusterVB_ddirichlet", (DL_FUNC) &_iClusterVB_ddirichlet, 2},
-    {"_iClusterVB_log_ddirichlet", (DL_FUNC) &_iClusterVB_log_ddirichlet, 2},
     {"_iClusterVB_CAVI_algorithm_standard", (DL_FUNC) &_iClusterVB_CAVI_algorithm_standard, 11},
     {"_iClusterVB_CAVI_algorithm_global", (DL_FUNC) &_iClusterVB_CAVI_algorithm_global, 11},
     {NULL, NULL, 0}

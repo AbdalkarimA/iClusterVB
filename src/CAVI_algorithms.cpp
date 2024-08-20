@@ -16,7 +16,7 @@ using namespace arma;
 
 
 // Function to find the index of an element in a character vector
-// [[Rcpp::export]]
+// // [[Rcpp::export]]
 
 Rcpp::NumericVector findIndices_char(Rcpp::CharacterVector vec, const std::string& target) {
 
@@ -35,7 +35,7 @@ Rcpp::NumericVector findIndices_char(Rcpp::CharacterVector vec, const std::strin
 }
 
 // Function to find the index of an element in a numeric vector
-// [[Rcpp::export]]
+// // [[Rcpp::export]]
 int findIndex_numeric(const arma::vec& vec, double target) {
 
   int n = vec.n_elem;  // Use .n_elem to get the number of elements
@@ -69,7 +69,7 @@ arma::vec softmax_log(arma::vec log_values) {
 
 #include <unordered_map>
 
-// [[Rcpp::export]]
+// // [[Rcpp::export]]
 double ddirichlet(const arma::vec& x, const arma::vec& alpha) {
   double sum_alpha = arma::accu(alpha);
   double sum_x = arma::accu(x);
@@ -80,7 +80,7 @@ double ddirichlet(const arma::vec& x, const arma::vec& alpha) {
   return std::exp(log_density - lgamma(sum_x));
 }
 
-// [[Rcpp::export]]
+// // [[Rcpp::export]]
 double log_ddirichlet(const arma::vec& x, const arma::vec& alpha) {
   double sum_alpha = arma::accu(alpha);
   double sum_x = arma::accu(x);
