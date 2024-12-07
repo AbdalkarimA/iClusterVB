@@ -2,7 +2,7 @@ Type: Package
 Package: iClusterVB
 Title: Fast Integrative Clustering and Feature Selection for High
     Dimensional Data
-Version: 0.1.2
+Version: 0.1.4
 Authors@R: c(
     person("Abdalkarim", "Alnajjar", , "abdalkarim.alnajjar@queensu.ca", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0009-0008-4439-1214")),
@@ -32,7 +32,6 @@ Imports:
     mvtnorm,
     pheatmap,
     poLCA,
-    R.utils,
     Rcpp (>= 1.0.12),
     stats,
     utils,

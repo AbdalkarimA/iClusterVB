@@ -121,18 +121,11 @@ distribution vector \code{dist}. For example, \code{dist <-
 dat1 <- list(
   gauss_1 = sim_data$continuous1_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
   gauss_2 = sim_data$continuous2_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
-  poisson_1 = sim_data$count_data[c(1:20, 61:80, 121:140, 181:200), 1:75],
-  multinomial_1 = sim_data$binary_data[c(1:20, 61:80, 121:140, 181:200), 1:75]
-)
-
-# We re-code `0`s to `2`s
-
-dat1$multinomial_1[dat1$multinomial_1 == 0] <- 2
+  poisson_1 = sim_data$count_data[c(1:20, 61:80, 121:140, 181:200), 1:75])
 
 dist <- c(
   "gaussian", "gaussian",
-  "poisson", "multinomial"
-)
+  "poisson")
 
 # Note: `max_iter` is a time-intensive step.
 # For the purpose of testing the code, use a small value (e.g. 10).
@@ -144,7 +137,7 @@ fit_iClusterVB <- iClusterVB(
   K = 4,
   initial_method = "VarSelLCM",
   VS_method = 1,
-  max_iter = 50
+  max_iter = 10
 )
 
 # We can obtain a summary using the summary() function
